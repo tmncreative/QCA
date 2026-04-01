@@ -23,6 +23,10 @@ body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
 .card-hover:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(27,110,138,.1)}
 .partner-track{display:flex;align-items:center;gap:0;animation:ticker 18s linear infinite;width:max-content}
 .partner-track:hover{animation-play-state:paused}
+.ba-slider{position:relative;overflow:hidden;border-radius:4px;cursor:ew-resize;user-select:none}
+.ba-handle{position:absolute;top:0;bottom:0;width:3px;background:#00D455;cursor:ew-resize;z-index:3;transform:translateX(-50%)}
+.ba-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#00D455;border:3px solid #fff;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.ba-handle::after{content:'◀ ▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:#091E27;font-weight:700;letter-spacing:-1px;margin-top:0px;pointer-events:none}
 @media(max-width:768px){
   .hide-m{display:none!important}
   .m-stack{grid-template-columns:1fr!important}
@@ -138,6 +142,35 @@ function LogoCard({src,alt,desc,alt2}){
   </div>);
 }
 
+function BeforeAfter(){
+  const[pos,setPos]=useState(50);
+  const ref=useRef(null);
+  const drag=useRef(false);
+  const move=e=>{
+    if(!drag.current&&e.type!=="click")return;
+    const r=ref.current.getBoundingClientRect();
+    const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+    setPos(Math.min(98,Math.max(2,(x/r.width)*100)));
+  };
+  return(
+    <div ref={ref} className="ba-slider" style={{aspectRatio:"16/9",touchAction:"none"}}
+      onMouseDown={()=>{drag.current=true}}
+      onMouseUp={()=>{drag.current=false}}
+      onMouseLeave={()=>{drag.current=false}}
+      onMouseMove={move}
+      onTouchMove={move}
+      onClick={move}>
+      <img src="/photos/after.jpg" alt="After" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
+      <div style={{position:"absolute",inset:0,overflow:"hidden",width:`${pos}%`}}>
+        <img src="/photos/before.jpg" alt="Before" style={{position:"absolute",inset:0,width:`${10000/pos}%`,maxWidth:"none",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
+      </div>
+      <div className="ba-handle" style={{left:`${pos}%`}}/>
+      <div style={{position:"absolute",top:14,left:14,background:"rgba(9,30,39,.75)",padding:"5px 12px",borderRadius:2,fontFamily:"'DM Sans',sans-serif",fontSize:11,fontWeight:700,color:"#fff",letterSpacing:".08em",textTransform:"uppercase",backdropFilter:"blur(4px)"}}>Before</div>
+      <div style={{position:"absolute",top:14,right:14,background:"rgba(0,212,85,.85)",padding:"5px 12px",borderRadius:2,fontFamily:"'DM Sans',sans-serif",fontSize:11,fontWeight:700,color:"#091E27",letterSpacing:".08em",textTransform:"uppercase"}}>After</div>
+    </div>
+  );
+}
+
 function HomePage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),150)},[]);
@@ -196,6 +229,56 @@ function HomePage({setPage}){
             <R key={i} delay={i+1}><div className="card-hover" style={{background:C.white,padding:"36px 32px",border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,position:"relative",overflow:"hidden",height:"100%"}}><div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`}}/><div style={{fontSize:28,marginBottom:18}}>{c.icon}</div><h3 style={{fontFamily:F.h,fontSize:20,fontWeight:700,color:C.tealDeep,margin:"0 0 10px"}}>{c.title}</h3><p style={{fontFamily:F.b,fontSize:14,color:C.gray,lineHeight:1.7,margin:0}}>{c.desc}</p></div></R>
           )}
         </div>
+      </div>
+    </section>
+    <section style={{background:C.white}}>
+      <div className="m-pad m-stack" style={{maxWidth:1100,margin:"0 auto",padding:"80px 32px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"center"}}>
+        <R><div>
+          <Lbl>Who We Are</Lbl>
+          <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 20px",fontWeight:700}}>Family-Owned. Operator-Minded.</h2>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because he knew operators were getting close enough — not dialed in.</p>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business. When Winston is out on a service call, there's a good chance his daughter is along for the ride — hands-on with the chemistry from day one.</p>
+          <div style={{display:"inline-flex",alignItems:"center",gap:10,padding:"12px 20px",background:C.offWhite,borderRadius:4,border:`1px solid rgba(27,110,138,.08)`}}>
+            <span style={{fontSize:20}}>🧪</span>
+            <span style={{fontFamily:F.b,fontSize:13,color:C.gray,fontStyle:"italic"}}>"She's already got better dilution ratios than most reps I've trained."</span>
+          </div>
+        </div></R>
+        <R delay={1}><div style={{position:"relative"}}>
+          <div style={{position:"absolute",top:-12,left:-12,right:12,bottom:12,background:C.offWhite,borderRadius:6,border:`1px solid rgba(27,110,138,.08)`,zIndex:0}}/>
+          <img src="/photos/daughter.jpg" alt="Future chemist" style={{width:"100%",borderRadius:4,display:"block",position:"relative",zIndex:1,boxShadow:"0 8px 32px rgba(12,47,61,.12)"}}/>
+          <div style={{position:"absolute",bottom:16,right:-8,zIndex:2,background:C.tealDeep,padding:"8px 14px",borderRadius:3,boxShadow:"0 4px 16px rgba(0,0,0,.2)"}}>
+            <div style={{fontFamily:F.b,fontSize:11,fontWeight:600,color:C.green,letterSpacing:".1em",textTransform:"uppercase"}}>Blair Ceramics</div>
+            <div style={{fontFamily:F.b,fontSize:10.5,color:"rgba(255,255,255,.5)"}}>SC Low pH — 5 gallons</div>
+          </div>
+        </div></R>
+      </div>
+    </section>
+    <section style={{background:C.offWhite,padding:"80px 32px"}}>
+      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto"}}>
+        <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>In the Field</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:0,fontWeight:700}}>Results You Can See</h2></div></R>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:14}}>
+          {[
+            {src:"/photos/gallery-4.jpg",label:"Tesla Model Y — spot-free finish"},
+            {src:"/photos/gallery-5.jpg",label:"Tundra — ceramic gloss after wash"},
+            {src:"/photos/gallery-6.jpg",label:"Blair Ceramics precision dispensing system"},
+            {src:"/photos/gallery-2.jpg",label:"Clean exit — high-gloss black SUV"},
+          ].map((g,i)=>(
+            <R key={i} delay={i<3?i+1:0}>
+              <div className="card-hover" style={{borderRadius:4,overflow:"hidden",position:"relative",background:C.dark}}>
+                <img src={g.src} alt={g.label} style={{width:"100%",height:240,objectFit:"cover",display:"block",opacity:.92}}/>
+                <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"28px 16px 14px",background:"linear-gradient(0deg,rgba(9,30,39,.85),transparent)"}}>
+                  <span style={{fontFamily:F.b,fontSize:12,color:"rgba(255,255,255,.8)",fontWeight:500}}>{g.label}</span>
+                </div>
+              </div>
+            </R>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section style={{background:C.white,padding:"80px 32px"}}>
+      <div className="m-pad" style={{maxWidth:900,margin:"0 auto"}}>
+        <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>Before & After</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>The Difference Chemistry Makes</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,margin:0}}>Drag the slider to compare. Same car, same wash — before and after a dialed-in chemistry program.</p></div></R>
+        <R delay={1}><BeforeAfter/></R>
       </div>
     </section>
     <section style={{position:"relative",overflow:"hidden",padding:"80px 32px",textAlign:"center"}}>
