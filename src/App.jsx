@@ -194,12 +194,12 @@ function ProductsPage({setPage}){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>Product Lines</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Chemistry + Equipment</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. Custom fit to your wash by QC Atlantic.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. Customizable chemistry programs built around your car wash by QC Atlantic.</p>
       </div>
     </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><div style={{display:"flex",alignItems:"center",gap:18,marginBottom:10}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Blair Ceramics</h2><img src="/blair-logo.png" alt="Blair Ceramics" style={{height:52,width:"auto",display:"block"}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
+        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><div style={{display:"flex",alignItems:"center",gap:20,marginBottom:10,flexWrap:"wrap"}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Blair Ceramics</h2><img src="/blair-logo.png" alt="Blair Ceramics" style={{height:56,width:"auto",display:"block",opacity:.85}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
           {blair.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={false}/></R>)}
         </div>
@@ -207,7 +207,7 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.white}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><div style={{display:"flex",alignItems:"center",gap:18,marginBottom:10}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Oasis Car Wash Systems</h2><img src="/oasis-logo.png" alt="Oasis Car Wash Systems" style={{height:52,width:"auto",display:"block",background:C.dark,padding:"4px 10px",borderRadius:3}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><div style={{display:"flex",alignItems:"center",gap:20,marginBottom:10,flexWrap:"wrap"}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Oasis Car Wash Systems</h2><img src="/oasis-logo.png" alt="Oasis Car Wash Systems" style={{height:44,width:"auto",display:"block",opacity:.85}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
           {oasis.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={true}/></R>)}
         </div>
