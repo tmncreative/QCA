@@ -264,7 +264,7 @@ function HomePage({setPage}){
             {src:"/photos/gallery-4.jpg",label:"Tesla Model Y, spot-free finish"},
             {src:"/photos/gallery-5.jpg",label:"Tundra, ceramic gloss after wash"},
             {src:"/photos/gallery-6.jpg",label:"Blair Ceramics precision dispensing system"},
-            {src:"/photos/gallery-2.jpg",label:"Blair Ceramics dispensing system, installed"},
+            {src:"/photos/gallery-2.jpg",label:"You won't find a shinier car"},
           ].map((g,i)=>(
             <R key={i} delay={i<3?i+1:0}>
               <div className="card-hover" style={{borderRadius:4,overflow:"hidden",position:"relative",background:C.dark}}>
