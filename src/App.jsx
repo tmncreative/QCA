@@ -240,7 +240,7 @@ function HomePage({setPage}){
           <Lbl>Who We Are</Lbl>
           <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 20px",fontWeight:700}}>Family-Owned. Operator-Minded.</h2>
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because operators kept getting chemistry that was close enough, not dialed in.</p>
-          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business. When Winston is out on a service call, there's a good chance his daughter is along for the ride. She's been hands-on with the chemistry from day one.</p>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business in every sense. Winston built it from scratch, and the people closest to him have been part of it from day one.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:10,padding:"12px 20px",background:C.offWhite,borderRadius:4,border:`1px solid rgba(27,110,138,.08)`}}>
             <span style={{fontSize:20}}>🧪</span>
             <span style={{fontFamily:F.b,fontSize:13,color:C.gray,fontStyle:"italic"}}>"She's already got better dilution ratios than most reps I've trained."</span>
@@ -264,7 +264,7 @@ function HomePage({setPage}){
             {src:"/photos/gallery-4.jpg",label:"Tesla Model Y, spot-free finish"},
             {src:"/photos/gallery-5.jpg",label:"Tundra, ceramic gloss after wash"},
             {src:"/photos/gallery-6.jpg",label:"Blair Ceramics precision dispensing system"},
-            {src:"/photos/gallery-2.jpg",label:"Clean exit, high-gloss black SUV"},
+            {src:"/photos/gallery-2.jpg",label:"Blair Ceramics dispensing system, installed"},
           ].map((g,i)=>(
             <R key={i} delay={i<3?i+1:0}>
               <div className="card-hover" style={{borderRadius:4,overflow:"hidden",position:"relative",background:C.dark}}>
