@@ -127,14 +127,6 @@ function PCard({cat,alt}){
   </div>);
 }
 
-function LogoCard({src,alt,desc,alt2}){
-  return(<div className="card-hover" style={{background:alt2?C.offWhite:C.white,border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,overflow:"hidden",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"36px 32px",minHeight:200}}>
-    <div style={{height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`,position:"absolute",top:0,left:0,right:0}}/>
-    <img src={src} alt={alt} style={{maxWidth:"80%",maxHeight:120,width:"auto",height:"auto",display:"block",marginBottom:desc?16:0}}/>
-    {desc&&<p style={{fontFamily:F.b,fontSize:12.5,color:C.grayLight,textAlign:"center",lineHeight:1.6,margin:0}}>{desc}</p>}
-  </div>);
-}
-
 function HomePage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),150)},[]);
@@ -207,38 +199,21 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Blair Ceramics</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
+        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 16px",fontWeight:700}}>Blair Ceramics</h2><img src="/blair-logo.png" alt="Blair Ceramics" style={{height:110,width:"auto",display:"block",marginBottom:20}}/><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/blair-logo.png" alt="Blair Ceramics" desc="Superior Shine. Superior Protection." alt2={false}/></div></R>
-          {blair.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
+          {blair.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={false}/></R>)}
         </div>
       </div>
     </section>
     <section style={{background:C.white}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Oasis Car Wash Systems</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 16px",fontWeight:700}}>Oasis Car Wash Systems</h2><img src="/oasis-logo.png" alt="Oasis Car Wash Systems" style={{height:90,width:"auto",display:"block",marginBottom:20}}/><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/oasis-logo.png" alt="Oasis Car Wash Systems" desc="Family-owned since 1964. 5-year warranty on every unit." alt2={true}/></div></R>
-          {oasis.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={true}/></R>)}
+          {oasis.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={true}/></R>)}
         </div>
       </div>
     </section>
-    <section style={{background:C.offWhite}}>
-      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Entry Systems</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Unitec</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>The industry standard for car wash point-of-sale and entry systems since 1983. Unitec hardware integrates with all major wash control platforms and is built for unattended, high-volume operation.</p></div></R>
-        <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/unitec-logo.png" alt="Unitec" desc="The Car Wash Starts Here." alt2={false}/></div></R>
-          {[
-            {name:"Portal TI+",tag:"Tunnel & Rollover",desc:"Unitec's flagship entry system for tunnel and rollover car washes. Expanded remote reporting, full payment menu, and buy-up prompting built in. Integrates with all major wash control platforms.",products:["Touchscreen Interface","Remote Reporting","Buy-Up Prompting","Multi-Payment Support","Tunnel & Combo Compatible"]},
-            {name:"Sentinel",tag:"High Volume",desc:"Kiosk-style entry system designed for busy sites managing high customer volumes. Works with any in-bay automatic or conveyor system. Simplifies the transaction and keeps the line moving.",products:["Kiosk Design","IBA & Conveyor Compatible","High-Volume Optimized","Customer-Facing Display","Upgrade Prompting"]},
-            {name:"Wash Select II",tag:"Unattended",desc:"The leading entry system for unattended automatic car washes in the petroleum market. Daylight-readable LCD display guides customers through payment and promotes upgrades without staff on site.",products:["Daylight-Readable LCD","Unattended Operation","Petroleum Market Proven","WashPay Integration","POS4000 Compatible"]},
-            {name:"WashPay",tag:"Loyalty & Payments",desc:"Unitec's cloud-based payment and loyalty platform. Manages unlimited wash plans, fleet accounts, and gift cards from a single dashboard. Real-time reporting across all locations.",products:["Unlimited Wash Plans","Fleet Accounts","Gift Cards","Cloud Dashboard","Multi-Site Reporting"]},
-            {name:"XPert Remote",tag:"Site Management",desc:"Remote monitoring and diagnostics platform that connects to Unitec entry systems. Get real-time alerts, transaction reports, and equipment status from any device, any time.",products:["Real-Time Alerts","Transaction Reporting","Equipment Diagnostics","Remote Access","Multi-Location View"]},
-          ].map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
-        </div>
-      </div>
-    </section>
-    <div style={{position:"absolute",inset:0,background:C.tealDeep}}/><R><div style={{position:"relative",zIndex:1}}><h2 style={{fontFamily:F.h,fontSize:"clamp(22px,3.5vw,32px)",color:C.white,margin:"0 0 10px",fontWeight:700}}>Need chemistry, equipment, or both?</h2><p style={{fontFamily:F.b,fontSize:14.5,color:"rgba(255,255,255,.45)",margin:"0 0 28px"}}>We'll visit your site, evaluate your setup, and build a program that covers everything from presoak to drying system.</p><button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:13,fontWeight:600,padding:"13px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2}}>Request a Consultation</button></div></R></section>
+    <section style={{position:"relative",padding:"72px 32px",textAlign:"center",overflow:"hidden"}}><div style={{position:"absolute",inset:0,background:C.tealDeep}}/><R><div style={{position:"relative",zIndex:1}}><h2 style={{fontFamily:F.h,fontSize:"clamp(22px,3.5vw,32px)",color:C.white,margin:"0 0 10px",fontWeight:700}}>Need chemistry, equipment, or both?</h2><p style={{fontFamily:F.b,fontSize:14.5,color:"rgba(255,255,255,.45)",margin:"0 0 28px"}}>We'll visit your site, evaluate your setup, and build a program that covers everything from presoak to drying system.</p><button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:13,fontWeight:600,padding:"13px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2}}>Request a Consultation</button></div></R></section>
   </div>);
 }
 
