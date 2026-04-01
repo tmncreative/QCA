@@ -134,9 +134,9 @@ function HomePage({setPage}){
     <section style={{minHeight:"100vh",display:"flex",alignItems:"center",position:"relative",overflow:"hidden"}}>
       <HeroBG/>
       <div className="m-pad m-txt" style={{maxWidth:860,margin:"0 auto",padding:"150px 32px 100px",textAlign:"center",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(30px)",transition:"all .9s cubic-bezier(.23,1,.32,1)"}}>
-        <Lbl>Custom-Fit Car Wash Chemistry</Lbl>
+        <Lbl>Customizable Car Wash Chemistry</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(40px,7vw,78px)",fontWeight:700,color:C.white,lineHeight:1.05,margin:"0 0 24px",letterSpacing:"-.03em"}}>Chemistry.<br/><span style={{color:C.green,fontStyle:"italic"}}>Not Soap.</span></h1>
-        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.5)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash chemistry custom fit to your tunnel, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
+        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.5)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash chemistry customizable to your car wash, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
         <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
           <button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:14,fontWeight:600,padding:"15px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`}}>Schedule a Trial</button>
           <button onClick={()=>setPage("Products")} style={{fontFamily:F.b,fontSize:14,fontWeight:500,padding:"15px 36px",background:"rgba(255,255,255,.06)",color:C.white,border:"1px solid rgba(255,255,255,.15)",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,backdropFilter:"blur(4px)"}}>See Our Chemistry</button>
@@ -145,7 +145,7 @@ function HomePage({setPage}){
     </section>
     <section style={{background:C.white,borderBottom:`1px solid ${C.lightTeal}`}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"48px 32px",display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:24,textAlign:"center"}}>
-        {[{n:"10+",l:"Years Custom-Fitting Chemistry"},{n:"1",l:"Point of Contact. Always."},{n:"100%",l:"Operator-Minded"}].map((s,i)=>
+        {[{n:"10+",l:"Years of Customizable Chemistry"},{n:"1",l:"Point of Contact. Always."},{n:"100%",l:"Operator-Minded"}].map((s,i)=>
           <R key={i} delay={i+1}><div style={{fontFamily:F.h,fontSize:"clamp(32px,5vw,42px)",fontWeight:700,color:C.teal,lineHeight:1}}>{s.n}</div><div style={{fontFamily:F.b,fontSize:12.5,color:C.grayLight,marginTop:8}}>{s.l}</div></R>
         )}
       </div>
@@ -154,7 +154,7 @@ function HomePage({setPage}){
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"88px 32px"}}>
         <R><div style={{textAlign:"center",marginBottom:56}}><Lbl>Why QC Atlantic</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(26px,4vw,40px)",color:C.tealDeep,margin:0,fontWeight:700}}>Complete Control of Your Chemistry</h2></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:24}}>
-          {[{icon:"⚗️",title:"Custom-Fit to Your Wash",desc:"Every tunnel is different. We custom fit chemistry to your equipment, water quality, tunnel length, and dwell time. You get complete control over cleaning power, foam profile, and cost per car, all dialed independently."},{icon:"📊",title:"Cleaner. Drier. Shinier.",desc:"Every application we set up is designed with drying in mind. From dual pH presoaks that tackle both organic and inorganic soils to protectants that prep the surface for a spot-free finish, the whole system works together."},{icon:"🤝",title:"Service Starts at the Sale",desc:"You deal with Winston directly. Not a call center, not a regional manager. When you have a problem at 6am on a Saturday, you get someone who has spent a decade solving those exact problems in backrooms across the country."}].map((c,i)=>
+          {[{icon:"⚗️",title:"Customizable to Your Wash",desc:"Every car wash is different. We customize chemistry to your equipment, water quality, wash length, and dwell time. You get complete control over cleaning power, foam profile, and cost per car, all dialed independently."},{icon:"📊",title:"Cleaner. Drier. Shinier.",desc:"Every application we set up is designed with drying in mind. From dual pH presoaks that tackle both organic and inorganic soils to protectants that prep the surface for a spot-free finish, the whole system works together."},{icon:"🤝",title:"Service Starts at the Sale",desc:"You deal with Winston directly. Not a call center, not a regional manager. When you have a problem at 6am on a Saturday, you get someone who has spent a decade solving those exact problems in backrooms across the country."}].map((c,i)=>
             <R key={i} delay={i+1}><div className="card-hover" style={{background:C.white,padding:"36px 32px",border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,position:"relative",overflow:"hidden",height:"100%"}}><div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`}}/><div style={{fontSize:28,marginBottom:18}}>{c.icon}</div><h3 style={{fontFamily:F.h,fontSize:20,fontWeight:700,color:C.tealDeep,margin:"0 0 10px"}}>{c.title}</h3><p style={{fontFamily:F.b,fontSize:14,color:C.gray,lineHeight:1.7,margin:0}}>{c.desc}</p></div></R>
           )}
         </div>
@@ -165,7 +165,7 @@ function HomePage({setPage}){
       <div style={{position:"absolute",left:"50%",top:"50%",width:500,height:500,borderRadius:"50%",background:`radial-gradient(circle,${C.green}06,transparent 70%)`,transform:"translate(-50%,-50%)"}}/>
       <R><div style={{position:"relative",zIndex:1}}>
         <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.white,margin:"0 0 12px",fontWeight:700}}>Ready to own the car?</h2>
-        <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.45)",margin:"0 0 32px"}}>Schedule a trial and we'll custom fit a chemistry program to your wash. No contracts, no pressure. Just results.</p>
+        <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.45)",margin:"0 0 32px"}}>Schedule a trial and we'll build a customizable chemistry program for your car wash. No contracts, no pressure. Just results.</p>
         <button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:14,fontWeight:600,padding:"15px 44px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`}}>Get in Touch</button>
       </div></R>
     </section>
@@ -199,7 +199,7 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Blair Ceramics</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
+        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><div style={{display:"flex",alignItems:"center",gap:18,marginBottom:10}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Blair Ceramics</h2><img src="/blair-logo.png" alt="Blair Ceramics" style={{height:52,width:"auto",display:"block"}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
           {blair.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={false}/></R>)}
         </div>
@@ -207,7 +207,7 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.white}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Oasis Car Wash Systems</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><div style={{display:"flex",alignItems:"center",gap:18,marginBottom:10}}><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:0,fontWeight:700}}>Oasis Car Wash Systems</h2><img src="/oasis-logo.png" alt="Oasis Car Wash Systems" style={{height:52,width:"auto",display:"block",background:C.dark,padding:"4px 10px",borderRadius:3}}/></div><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
           {oasis.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={true}/></R>)}
         </div>
@@ -223,7 +223,7 @@ function AboutPage({setPage}){
   const tl=[
     {y:"2016",r:"Territory Manager",c:"Carolina Pride Carwash Systems",n:"Top Sales Rep and Top Growth Rep. Managed customer acquisition, deliveries, and chemical programs across the Charlotte territory."},
     {y:"2019",r:"Senior Account Manager",c:"Qual Chem LLC",n:"Built the Colorado territory from zero. Grew it 30%+ year over year working with top-tier operators."},
-    {y:"2023",r:"Chemical Sales Manager",c:"AUTEC Car Wash Systems",n:"Managed chemical sales nationally for 2.5 years across tunnel and in-bay configurations."},
+    {y:"2023",r:"Chemical Sales Manager",c:"AUTEC Car Wash Systems",n:"Managed chemical sales nationally for 2.5 years across car wash and in-bay configurations."},
     {y:"2026",r:"Founder & President",c:"QC Atlantic",n:"Chemistry. Not Soap. Serving operators across the Atlantic region from Clemmons, NC.",hl:true},
   ];
   return(<div>
@@ -238,8 +238,8 @@ function AboutPage({setPage}){
       <div className="m-pad" style={{maxWidth:780,margin:"0 auto",padding:"72px 32px"}}>
         <R><div style={{fontFamily:F.b,fontSize:16.5,color:C.gray,lineHeight:1.85}}>
           <p style={{margin:"0 0 22px"}}>QC Atlantic was founded in Clemmons, North Carolina by a car wash chemical veteran who saw the same problem at every company he worked for: operators were getting chemistry that was close enough, but never truly dialed in.</p>
-          <p style={{margin:"0 0 22px"}}>Winston spent a decade at companies like Qual Chem, Carolina Pride, and AUTEC. He built territories from scratch, grew established markets 30%+ year over year, and earned Top Sales Rep and Top Growth Rep honors along the way. More importantly, he learned how different chemistry platforms perform across different equipment, water qualities, climates, and tunnel configurations.</p>
-          <p style={{margin:"0 0 22px"}}>That experience is the foundation of QC Atlantic. When we custom fit chemistry to your wash, we are drawing on thousands of hours in tunnels across the Southeast, the West, and Florida. We know what works in hard water and soft water, in 120-foot tunnels and 60-foot express washes, during peak bug season and mild winters.</p>
+          <p style={{margin:"0 0 22px"}}>Winston spent a decade at companies like Qual Chem, Carolina Pride, and AUTEC. He built territories from scratch, grew established markets 30%+ year over year, and earned Top Sales Rep and Top Growth Rep honors along the way. More importantly, he learned how different chemistry platforms perform across different equipment, water qualities, climates, and car wash configurations.</p>
+          <p style={{margin:"0 0 22px"}}>That experience is the foundation of QC Atlantic. When we build a chemistry program for your car wash, we are drawing on thousands of hours in car washes across the Southeast, the West, and Florida. We know what works in hard water and soft water, in 120-foot car washes and 60-foot express locations, during peak bug season and mild winters.</p>
           <p style={{margin:"0 0 22px"}}>At QC Atlantic, you are not handed off to a territory rep. Winston is your point of contact from trial through ongoing service. When a problem comes up, you talk to the person who can solve it, not someone who needs to escalate.</p>
           <p style={{margin:0,fontFamily:F.h,fontSize:21,fontWeight:700,color:C.tealDeep,fontStyle:"italic"}}>Chemistry for car wash operators, backed by someone who has been in your backroom.</p>
         </div></R>
@@ -279,7 +279,7 @@ function ContactPage(){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>Get Started</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Let's Talk Chemistry</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Whether you run 1 tunnel or 20 locations, we'll build a chemical program around your operation.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Whether you run 1 car wash or 20 locations, we'll build a chemical program around your operation.</p>
       </div>
     </section>
     <section style={{background:C.offWhite}}>
