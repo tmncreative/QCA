@@ -145,21 +145,24 @@ function LogoCard({src,alt,desc,alt2}){
 function BeforeAfter(){
   const[pos,setPos]=useState(50);
   const ref=useRef(null);
-  const drag=useRef(false);
-  const move=e=>{
-    if(!drag.current&&e.type!=="click")return;
+  const getPos=e=>{
     const r=ref.current.getBoundingClientRect();
-    const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
-    setPos(Math.min(98,Math.max(2,(x/r.width)*100)));
+    const clientX=e.touches?e.touches[0].clientX:e.clientX;
+    return Math.min(98,Math.max(2,((clientX-r.left)/r.width)*100));
+  };
+  const onPointerDown=e=>{
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setPos(getPos(e));
+  };
+  const onPointerMove=e=>{
+    if(e.buttons===0&&e.type!=="touchmove")return;
+    setPos(getPos(e));
   };
   return(
     <div ref={ref} className="ba-slider" style={{aspectRatio:"16/9",touchAction:"none"}}
-      onMouseDown={()=>{drag.current=true}}
-      onMouseUp={()=>{drag.current=false}}
-      onMouseLeave={()=>{drag.current=false}}
-      onMouseMove={move}
-      onTouchMove={move}
-      onClick={move}>
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onTouchMove={e=>{e.preventDefault();setPos(getPos(e))}}>
       <img src="/photos/after.jpg" alt="After" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
       <div style={{position:"absolute",inset:0,overflow:"hidden",width:`${pos}%`}}>
         <img src="/photos/before.jpg" alt="Before" style={{position:"absolute",inset:0,width:`${10000/pos}%`,maxWidth:"none",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
@@ -236,8 +239,8 @@ function HomePage({setPage}){
         <R><div>
           <Lbl>Who We Are</Lbl>
           <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 20px",fontWeight:700}}>Family-Owned. Operator-Minded.</h2>
-          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because he knew operators were getting close enough — not dialed in.</p>
-          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business. When Winston is out on a service call, there's a good chance his daughter is along for the ride — hands-on with the chemistry from day one.</p>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because operators kept getting chemistry that was close enough, not dialed in.</p>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business. When Winston is out on a service call, there's a good chance his daughter is along for the ride. She's been hands-on with the chemistry from day one.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:10,padding:"12px 20px",background:C.offWhite,borderRadius:4,border:`1px solid rgba(27,110,138,.08)`}}>
             <span style={{fontSize:20}}>🧪</span>
             <span style={{fontFamily:F.b,fontSize:13,color:C.gray,fontStyle:"italic"}}>"She's already got better dilution ratios than most reps I've trained."</span>
@@ -248,7 +251,7 @@ function HomePage({setPage}){
           <img src="/photos/daughter.jpg" alt="Future chemist" style={{width:"100%",borderRadius:4,display:"block",position:"relative",zIndex:1,boxShadow:"0 8px 32px rgba(12,47,61,.12)"}}/>
           <div style={{position:"absolute",bottom:16,right:-8,zIndex:2,background:C.tealDeep,padding:"8px 14px",borderRadius:3,boxShadow:"0 4px 16px rgba(0,0,0,.2)"}}>
             <div style={{fontFamily:F.b,fontSize:11,fontWeight:600,color:C.green,letterSpacing:".1em",textTransform:"uppercase"}}>Blair Ceramics</div>
-            <div style={{fontFamily:F.b,fontSize:10.5,color:"rgba(255,255,255,.5)"}}>SC Low pH — 5 gallons</div>
+            <div style={{fontFamily:F.b,fontSize:10.5,color:"rgba(255,255,255,.5)"}}>SC Low pH, 5 gallons</div>
           </div>
         </div></R>
       </div>
@@ -258,10 +261,10 @@ function HomePage({setPage}){
         <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>In the Field</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:0,fontWeight:700}}>Results You Can See</h2></div></R>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:14}}>
           {[
-            {src:"/photos/gallery-4.jpg",label:"Tesla Model Y — spot-free finish"},
-            {src:"/photos/gallery-5.jpg",label:"Tundra — ceramic gloss after wash"},
+            {src:"/photos/gallery-4.jpg",label:"Tesla Model Y, spot-free finish"},
+            {src:"/photos/gallery-5.jpg",label:"Tundra, ceramic gloss after wash"},
             {src:"/photos/gallery-6.jpg",label:"Blair Ceramics precision dispensing system"},
-            {src:"/photos/gallery-2.jpg",label:"Clean exit — high-gloss black SUV"},
+            {src:"/photos/gallery-2.jpg",label:"Clean exit, high-gloss black SUV"},
           ].map((g,i)=>(
             <R key={i} delay={i<3?i+1:0}>
               <div className="card-hover" style={{borderRadius:4,overflow:"hidden",position:"relative",background:C.dark}}>
@@ -277,7 +280,7 @@ function HomePage({setPage}){
     </section>
     <section style={{background:C.white,padding:"80px 32px"}}>
       <div className="m-pad" style={{maxWidth:900,margin:"0 auto"}}>
-        <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>Before & After</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>The Difference Chemistry Makes</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,margin:0}}>Drag the slider to compare. Same car, same wash — before and after a dialed-in chemistry program.</p></div></R>
+        <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>Before & After</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>The Difference Chemistry Makes</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,margin:0}}>Drag the slider to compare. Same car, same wash. Before and after a dialed-in chemistry program.</p></div></R>
         <R delay={1}><BeforeAfter/></R>
       </div>
     </section>
@@ -344,7 +347,7 @@ function ProductsPage({setPage}){
           {[
             {name:"Patheon",tag:"POS & Management",desc:"DRB's flagship cloud-based point-of-sale and site management platform. Real-time dashboards, multi-location control, and deep reporting built for operators running 1 site or 100.",products:["Cloud POS","Multi-Site Dashboard","Real-Time Reporting","Employee Management","Inventory Tracking"]},
             {name:"FastPass",tag:"Unlimited Wash",desc:"DRB's unlimited wash plan platform. Manages memberships, billing, and RFID or license plate recognition for frictionless entry. The industry standard for recurring revenue programs.",products:["Membership Billing","RFID & LPR Entry","Plan Management","Churn Reporting","Mobile App Ready"]},
-            {name:"Suds",tag:"Fleet",desc:"Fleet account management built into the DRB ecosystem. Commercial fleet operators get a dedicated portal, volume pricing, and consolidated billing — all managed without staff involvement.",products:["Fleet Portal","Volume Pricing","Consolidated Billing","Vehicle Tracking","Self-Service Sign-Up"]},
+            {name:"Suds",tag:"Fleet",desc:"Fleet account management built into the DRB ecosystem. Commercial fleet operators get a dedicated portal, volume pricing, and consolidated billing. No staff involvement required.",products:["Fleet Portal","Volume Pricing","Consolidated Billing","Vehicle Tracking","Self-Service Sign-Up"]},
             {name:"TunnelWatch",tag:"Tunnel Control",desc:"Real-time tunnel monitoring and control software. Tracks every vehicle through the tunnel, flags exceptions, and gives managers full visibility into throughput and uptime.",products:["Vehicle Tracking","Exception Alerts","Throughput Metrics","Camera Integration","Remote Access"]},
             {name:"Beacon",tag:"Marketing",desc:"DRB's customer engagement and marketing platform. Automated campaigns, win-back flows, and loyalty tools that keep members active and attract new customers.",products:["Automated Campaigns","Win-Back Flows","Loyalty Programs","Email & SMS","Performance Analytics"]},
           ].map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
@@ -375,11 +378,11 @@ function AboutPage({setPage}){
     <section style={{background:C.white}}>
       <div className="m-pad" style={{maxWidth:780,margin:"0 auto",padding:"72px 32px"}}>
         <R><div style={{fontFamily:F.b,fontSize:16.5,color:C.gray,lineHeight:1.85}}>
-          <p style={{margin:"0 0 22px"}}>QC Atlantic was founded in Clemmons, North Carolina by a car wash chemical veteran who saw the same problem at every company he worked for: operators were getting chemistry that was close enough, but never truly dialed in.</p>
-          <p style={{margin:"0 0 22px"}}>Winston spent a decade at companies like Qual Chem, Carolina Pride, and AUTEC. He built territories from scratch, grew established markets 30%+ year over year, and earned Top Sales Rep and Top Growth Rep honors along the way. More importantly, he learned how different chemistry platforms perform across different equipment, water qualities, climates, and car wash configurations.</p>
-          <p style={{margin:"0 0 22px"}}>That experience is the foundation of QC Atlantic. When we build a chemistry program for your car wash, we are drawing on thousands of hours in car washes across the Southeast, the West, and Florida. We know what works in hard water and soft water, in 120-foot car washes and 60-foot express locations, during peak bug season and mild winters.</p>
-          <p style={{margin:"0 0 22px"}}>At QC Atlantic, you are not handed off to a territory rep. Winston is your point of contact from trial through ongoing service. When a problem comes up, you talk to the person who can solve it, not someone who needs to escalate.</p>
-          <p style={{margin:0,fontFamily:F.h,fontSize:21,fontWeight:700,color:C.tealDeep,fontStyle:"italic"}}>Chemistry for car wash operators, backed by someone who has been in your backroom.</p>
+          <p style={{margin:"0 0 22px"}}>QC Atlantic was founded in Clemmons, North Carolina by a car wash chemical veteran who kept running into the same problem: operators were getting chemistry that was close enough, but never truly dialed in.</p>
+          <p style={{margin:"0 0 22px"}}>Winston spent a decade at Qual Chem, Carolina Pride, and AUTEC. He built territories from scratch, grew established markets 30%+ year over year, and earned Top Sales Rep and Top Growth Rep honors along the way. More importantly, he learned how different chemistry platforms perform across different equipment, water qualities, climates, and car wash configurations.</p>
+          <p style={{margin:"0 0 22px"}}>That experience is what QC Atlantic runs on. When we build a chemistry program for your car wash, we're drawing on thousands of hours in car washes across the Southeast, the West, and Florida. We know what works in hard water and soft water, in 120-foot car washes and 60-foot express locations, during peak bug season and mild winters.</p>
+          <p style={{margin:"0 0 22px"}}>You won't get handed off to a territory rep. Winston is your point of contact from trial through ongoing service. When a problem comes up, you talk to the person who can fix it.</p>
+          <p style={{margin:0,fontFamily:F.h,fontSize:21,fontWeight:700,color:C.tealDeep,fontStyle:"italic"}}>Car wash chemistry backed by someone who has been in your backroom.</p>
         </div></R>
       </div>
     </section>
