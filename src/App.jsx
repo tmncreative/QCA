@@ -160,16 +160,16 @@ function HomePage({setPage}){
       <div style={{overflow:"hidden"}}>
         <div className="partner-track">
           {[
-            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
           ].map((p,i)=>(
