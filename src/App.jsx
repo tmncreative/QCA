@@ -15,11 +15,14 @@ const GCSS = `
 body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
 ::selection{background:rgba(0,212,85,.2)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
 .card-hover{transition:transform .3s ease,box-shadow .3s ease}
 .card-hover:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(27,110,138,.1)}
+.partner-track{display:flex;align-items:center;gap:0;animation:ticker 18s linear infinite;width:max-content}
+.partner-track:hover{animation-play-state:paused}
 @media(max-width:768px){
   .hide-m{display:none!important}
   .m-stack{grid-template-columns:1fr!important}
@@ -127,6 +130,14 @@ function PCard({cat,alt}){
   </div>);
 }
 
+function LogoCard({src,alt,desc,alt2}){
+  return(<div className="card-hover" style={{background:alt2?C.offWhite:C.white,border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,overflow:"hidden",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"36px 32px",minHeight:200}}>
+    <div style={{height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`,position:"absolute",top:0,left:0,right:0}}/>
+    <img src={src} alt={alt} style={{maxWidth:"80%",maxHeight:120,width:"auto",height:"auto",display:"block",marginBottom:desc?16:0}}/>
+    {desc&&<p style={{fontFamily:F.b,fontSize:12.5,color:C.grayLight,textAlign:"center",lineHeight:1.6,margin:0}}>{desc}</p>}
+  </div>);
+}
+
 function HomePage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),150)},[]);
@@ -143,6 +154,33 @@ function HomePage({setPage}){
         </div>
       </div>
     </section>
+    <div style={{background:`linear-gradient(180deg,${C.dark} 0%,${C.tealDeep} 100%)`,padding:"28px 0",overflow:"hidden",position:"relative",borderBottom:`1px solid rgba(0,212,85,.08)`}}>
+      <div style={{position:"absolute",left:0,top:0,bottom:0,width:80,background:`linear-gradient(90deg,${C.dark},transparent)`,zIndex:2,pointerEvents:"none"}}/>
+      <div style={{position:"absolute",right:0,top:0,bottom:0,width:80,background:`linear-gradient(270deg,${C.tealDeep},transparent)`,zIndex:2,pointerEvents:"none"}}/>
+      <div style={{overflow:"hidden"}}>
+        <div className="partner-track">
+          {[
+            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/blair-logo.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+          ].map((p,i)=>(
+            <div key={i} style={{display:"flex",alignItems:"center",gap:16,padding:"0 52px",flexShrink:0,borderRight:`1px solid rgba(255,255,255,.06)`}}>
+              <img src={p.src} alt={p.alt} style={{height:36,width:"auto",opacity:.75,filter:"brightness(1.2)"}}/>
+              <span style={{fontFamily:F.b,fontSize:11,fontWeight:600,letterSpacing:".14em",textTransform:"uppercase",color:"rgba(255,255,255,.3)",whiteSpace:"nowrap"}}>{p.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
     <section style={{background:C.white,borderBottom:`1px solid ${C.lightTeal}`}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"48px 32px",display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:24,textAlign:"center"}}>
         {[{n:"10+",l:"Years of Customizable Chemistry"},{n:"1",l:"Point of Contact. Always."},{n:"100%",l:"Operator-Minded"}].map((s,i)=>
@@ -199,17 +237,34 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 16px",fontWeight:700}}>Blair Ceramics</h2><img src="/blair-logo.png" alt="Blair Ceramics" style={{height:110,width:"auto",display:"block",marginBottom:20}}/><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
+        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Blair Ceramics</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          {blair.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={false}/></R>)}
+          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/blair-logo.png" alt="Blair Ceramics" desc="Superior Shine. Superior Protection." alt2={false}/></div></R>
+          {blair.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
         </div>
       </div>
     </section>
     <section style={{background:C.white}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 16px",fontWeight:700}}>Oasis Car Wash Systems</h2><img src="/oasis-logo.png" alt="Oasis Car Wash Systems" style={{height:90,width:"auto",display:"block",marginBottom:20}}/><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Oasis Car Wash Systems</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          {oasis.map((c,i)=><R key={i} delay={i<3?i+1:0}><PCard cat={c} alt={true}/></R>)}
+          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/oasis-logo.png" alt="Oasis Car Wash Systems" desc="Family-owned since 1964. 5-year warranty on every unit." alt2={true}/></div></R>
+          {oasis.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={true}/></R>)}
+        </div>
+      </div>
+    </section>
+    <section style={{background:C.offWhite}}>
+      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>POS & Site Management</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>DRB Systems</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>The leading car wash technology company. DRB powers point-of-sale, site management, loyalty, and fleet solutions across tunnel and in-bay operations of every size.</p></div></R>
+        <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
+          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/drb-logo.png" alt="DRB Systems" desc="Powering the car wash industry." alt2={false}/></div></R>
+          {[
+            {name:"Patheon",tag:"POS & Management",desc:"DRB's flagship cloud-based point-of-sale and site management platform. Real-time dashboards, multi-location control, and deep reporting built for operators running 1 site or 100.",products:["Cloud POS","Multi-Site Dashboard","Real-Time Reporting","Employee Management","Inventory Tracking"]},
+            {name:"FastPass",tag:"Unlimited Wash",desc:"DRB's unlimited wash plan platform. Manages memberships, billing, and RFID or license plate recognition for frictionless entry. The industry standard for recurring revenue programs.",products:["Membership Billing","RFID & LPR Entry","Plan Management","Churn Reporting","Mobile App Ready"]},
+            {name:"Suds",tag:"Fleet",desc:"Fleet account management built into the DRB ecosystem. Commercial fleet operators get a dedicated portal, volume pricing, and consolidated billing — all managed without staff involvement.",products:["Fleet Portal","Volume Pricing","Consolidated Billing","Vehicle Tracking","Self-Service Sign-Up"]},
+            {name:"TunnelWatch",tag:"Tunnel Control",desc:"Real-time tunnel monitoring and control software. Tracks every vehicle through the tunnel, flags exceptions, and gives managers full visibility into throughput and uptime.",products:["Vehicle Tracking","Exception Alerts","Throughput Metrics","Camera Integration","Remote Access"]},
+            {name:"Beacon",tag:"Marketing",desc:"DRB's customer engagement and marketing platform. Automated campaigns, win-back flows, and loyalty tools that keep members active and attract new customers.",products:["Automated Campaigns","Win-Back Flows","Loyalty Programs","Email & SMS","Performance Analytics"]},
+          ].map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
         </div>
       </div>
     </section>
