@@ -2,14 +2,14 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const handler = async (event) => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Content-Type': 'application/json',
-  };
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Content-Type': 'application/json',
+};
 
+export const handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
@@ -19,86 +19,87 @@ export const handler = async (event) => {
   }
 
   try {
-    const { invoiceNumber } = JSON.parse(event.body);
+    const { email } = JSON.parse(event.body);
 
-    if (!invoiceNumber || invoiceNumber.trim() === '') {
+    if (!email || email.trim() === '') {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Invoice number is required.' }),
+        body: JSON.stringify({ error: 'Email address is required.' }),
       };
     }
 
-    const cleaned = invoiceNumber.trim().toUpperCase();
+    const cleanedEmail = email.trim().toLowerCase();
 
-    // Search Stripe invoices by number
-    // Stripe allows listing invoices and filtering, but the best approach
-    // is to search using the invoice number field
-    const invoices = await stripe.invoices.search({
-      query: `number:"${cleaned}"`,
-    });
+    // Find the Stripe customer by email
+    const customers = await stripe.customers.list({ email: cleanedEmail, limit: 5 });
 
-    if (!invoices.data || invoices.data.length === 0) {
+    if (!customers.data || customers.data.length === 0) {
       return {
         statusCode: 404,
         headers,
-        body: JSON.stringify({ error: 'Invoice not found. Check the number and try again.' }),
+        body: JSON.stringify({ error: 'No account found for that email. Check the address or contact Winston directly.' }),
       };
     }
 
-    const invoice = invoices.data[0];
+    // Gather open invoices across all matching customers
+    const openInvoices = [];
 
-    // Only allow payment on open (unpaid) invoices
-    if (invoice.status === 'paid') {
+    for (const customer of customers.data) {
+      const invoices = await stripe.invoices.list({
+        customer: customer.id,
+        status: 'open',
+        limit: 50,
+      });
+
+      for (const invoice of invoices.data) {
+        openInvoices.push({
+          invoiceId: invoice.id,
+          number: invoice.number,
+          amountDue: invoice.amount_due,
+          currency: invoice.currency,
+          description: invoice.description || invoice.lines?.data?.[0]?.description || 'QC Atlantic Invoice',
+          customerName: invoice.customer_name || customer.name || '',
+          customerEmail: invoice.customer_email || cleanedEmail,
+          dueDate: invoice.due_date
+            ? new Date(invoice.due_date * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            : null,
+          created: new Date(invoice.created * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          lineItems: invoice.lines?.data?.map((line) => ({
+            description: line.description,
+            amount: line.amount,
+          })) || [],
+          createdTs: invoice.created,
+        });
+      }
+    }
+
+    if (openInvoices.length === 0) {
       return {
-        statusCode: 400,
+        statusCode: 200,
         headers,
-        body: JSON.stringify({ error: 'This invoice has already been paid.', status: 'paid' }),
+        body: JSON.stringify({
+          invoices: [],
+          message: 'No open invoices found. All invoices may already be paid.',
+        }),
       };
     }
 
-    if (invoice.status === 'void') {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'This invoice has been voided.', status: 'void' }),
-      };
-    }
+    // Sort newest first
+    openInvoices.sort((a, b) => b.createdTs - a.createdTs);
 
-    if (invoice.status !== 'open') {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: `This invoice is not available for payment (status: ${invoice.status}).` }),
-      };
-    }
-
-    // Return invoice details to the frontend
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({
-        invoiceId: invoice.id,
-        number: invoice.number,
-        amountDue: invoice.amount_due,
-        currency: invoice.currency,
-        description: invoice.description || invoice.lines?.data?.[0]?.description || 'QC Atlantic Invoice',
-        customerName: invoice.customer_name || '',
-        customerEmail: invoice.customer_email || '',
-        dueDate: invoice.due_date ? new Date(invoice.due_date * 1000).toLocaleDateString() : null,
-        created: new Date(invoice.created * 1000).toLocaleDateString(),
-        lineItems: invoice.lines?.data?.map((line) => ({
-          description: line.description,
-          amount: line.amount,
-        })) || [],
-      }),
+      body: JSON.stringify({ invoices: openInvoices }),
     };
+
   } catch (err) {
     console.error('Invoice lookup error:', err);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'Something went wrong. Please try again.' }),
+      body: JSON.stringify({ error: 'Something went wrong. Please try again or contact Winston directly.' }),
     };
   }
 };
