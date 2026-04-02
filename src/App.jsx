@@ -461,7 +461,7 @@ function Footer(){
   return(<footer style={{background:C.dark,padding:"44px 24px 28px",borderTop:`1px solid rgba(0,212,85,.06)`}}>
     <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
       <div style={{display:"flex",alignItems:"center",gap:10}}><Logo size={26} dark/><span style={{fontFamily:F.h,fontSize:15,fontWeight:700,color:C.white}}>QC Atlantic</span></div>
-      <div style={{fontFamily:F.b,fontSize:12.5,color:"rgba(255,255,255,.25)"}}>© 2026 Quality Car Atlantic. Clemmons, NC.</div>
+      <div style={{fontFamily:F.b,fontSize:12.5,color:"rgba(255,255,255,.25)"}}>© 2026 Quality Car Atlantic. Clemmons, NC. · <a href="https://tmncreative.com" target="_blank" rel="noopener" style={{color:"rgba(255,255,255,.18)",textDecoration:"none",fontSize:11}}>Site by TMN Creative</a></div>
       <div style={{fontFamily:F.h,fontSize:14,fontWeight:700,color:C.green,fontStyle:"italic"}}>Chemistry. Not Soap.</div>
     </div>
   </footer>);
