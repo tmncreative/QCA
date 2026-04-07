@@ -177,6 +177,36 @@ function BeforeAfter(){
   );
 }
 
+function Ico({type,size=56}){
+  const s={width:size,height:size,display:"block"};
+  if(type==="dial")return(
+    <svg viewBox="0 0 64 64" fill="none" style={s} xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="26" stroke={C.teal} strokeWidth="2"/>
+      <circle cx="32" cy="32" r="20" stroke={C.teal} strokeWidth="1" strokeDasharray="2 3" opacity=".5"/>
+      <path d="M32 14 L32 19" stroke={C.teal} strokeWidth="2" strokeLinecap="round"/>
+      <path d="M50 32 L45 32" stroke={C.teal} strokeWidth="2" strokeLinecap="round"/>
+      <path d="M32 50 L32 45" stroke={C.teal} strokeWidth="2" strokeLinecap="round"/>
+      <path d="M14 32 L19 32" stroke={C.teal} strokeWidth="2" strokeLinecap="round"/>
+      <path d="M32 32 L44 22" stroke={C.green} strokeWidth="3" strokeLinecap="round"/>
+      <circle cx="32" cy="32" r="3" fill={C.green}/>
+    </svg>
+  );
+  if(type==="drop")return(
+    <svg viewBox="0 0 64 64" fill="none" style={s} xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 8 C32 8 16 26 16 38 C16 47 23 54 32 54 C41 54 48 47 48 38 C48 26 32 8 32 8 Z" stroke={C.teal} strokeWidth="2" strokeLinejoin="round"/>
+      <path d="M26 36 C26 32 28 28 32 26" stroke={C.green} strokeWidth="2.5" strokeLinecap="round"/>
+      <circle cx="38" cy="42" r="2" fill={C.green}/>
+    </svg>
+  );
+  if(type==="shield")return(
+    <svg viewBox="0 0 64 64" fill="none" style={s} xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 8 L52 16 L52 32 C52 44 43 53 32 56 C21 53 12 44 12 32 L12 16 Z" stroke={C.teal} strokeWidth="2" strokeLinejoin="round"/>
+      <path d="M40 22 a5 5 0 0 0 -6.5 6.5 L24 38 L26 40 L36 30 a5 5 0 0 0 6.5 -6.5 L38.5 25.5 L36 23 Z" fill="none" stroke={C.green} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round"/>
+    </svg>
+  );
+  return null;
+}
+
 function HomePage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),150)},[]);
@@ -260,8 +290,8 @@ function HomePage({setPage}){
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"88px 32px"}}>
         <R><div style={{textAlign:"center",marginBottom:56}}><Lbl>Why QC Atlantic</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(26px,4vw,40px)",color:C.tealDeep,margin:0,fontWeight:700}}>Complete Control of Your Chemistry</h2></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:24}}>
-          {[{icon:"⚗️",title:"Customizable to Your Wash",desc:"Every car wash is different. We customize chemistry to your equipment, water quality, wash length, and dwell time. You get complete control over cleaning power, foam profile, and cost per car, all dialed independently."},{icon:"📊",title:"Cleaner. Drier. Shinier.",desc:"Every application we set up is designed with drying in mind. From dual pH presoaks that tackle both organic and inorganic soils to protectants that prep the surface for a spot-free finish, the whole system works together."},{icon:"🤝",title:"Service Starts at the Sale",desc:"You deal with Winston directly. Not a call center, not a regional manager. When you have a problem at 6am on a Saturday, you get someone who has spent a decade solving those exact problems in backrooms across the country."}].map((c,i)=>
-            <R key={i} delay={i+1}><div className="card-hover" style={{background:C.white,padding:"36px 32px",border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,position:"relative",overflow:"hidden",height:"100%"}}><div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`}}/><div style={{fontSize:28,marginBottom:18}}>{c.icon}</div><h3 style={{fontFamily:F.h,fontSize:20,fontWeight:700,color:C.tealDeep,margin:"0 0 10px"}}>{c.title}</h3><p style={{fontFamily:F.b,fontSize:14,color:C.gray,lineHeight:1.7,margin:0}}>{c.desc}</p></div></R>
+          {[{ico:"dial",title:"Customizable to Your Wash",desc:"Every car wash is different. We customize chemistry to your equipment, water quality, wash length, and dwell time. You get complete control over cleaning power, foam profile, and cost per car, all dialed independently."},{ico:"drop",title:"Cleaner. Drier. Shinier.",desc:"Every application we set up is designed with drying in mind. From dual pH presoaks that tackle both organic and inorganic soils to protectants that prep the surface for a spot-free finish, the whole system works together."},{ico:"shield",title:"Service Starts at the Sale",desc:"You deal with Winston directly. Not a call center, not a regional manager. When you have a problem at 6am on a Saturday, you get someone who has spent a decade solving those exact problems in backrooms across the country."}].map((c,i)=>
+            <R key={i} delay={i+1}><div className="card-hover" style={{background:C.white,padding:"36px 32px",border:`1px solid rgba(27,110,138,.06)`,borderRadius:4,position:"relative",overflow:"hidden",height:"100%"}}><div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.teal},${C.green})`}}/><div style={{marginBottom:18}}><Ico type={c.ico}/></div><h3 style={{fontFamily:F.h,fontSize:20,fontWeight:700,color:C.tealDeep,margin:"0 0 10px"}}>{c.title}</h3><p style={{fontFamily:F.b,fontSize:14,color:C.gray,lineHeight:1.7,margin:0}}>{c.desc}</p></div></R>
           )}
         </div>
       </div>
@@ -274,7 +304,9 @@ function HomePage({setPage}){
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because operators kept getting chemistry that was close enough, not dialed in.</p>
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business in every sense. Winston built it from scratch, and the people closest to him have been part of it from day one.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:10,padding:"12px 20px",background:C.offWhite,borderRadius:4,border:`1px solid rgba(27,110,138,.08)`}}>
-            <span style={{fontSize:20}}>🧪</span>
+            <svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{flexShrink:0}}>
+              <path d="M32 8 C32 8 16 26 16 38 C16 47 23 54 32 54 C41 54 48 47 48 38 C48 26 32 8 32 8 Z" stroke={C.green} strokeWidth="3" strokeLinejoin="round"/>
+            </svg>
             <span style={{fontFamily:F.b,fontSize:13,color:C.gray,fontStyle:"italic"}}>"She's already got better dilution ratios than most reps I've trained."</span>
           </div>
         </div></R>
@@ -388,11 +420,11 @@ function ProductsPage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),100)},[]);
   const blair=[
-    {name:"Presoaks",tag:"Cleaning",desc:"Hi and Lo pH presoaks formulated with varying blends of acids and surfactants to penetrate and remove road film, oil, grease, bug residue, and mineral deposits. Available in HF, ABF, and acid-alternative formulations for touchless, friction, and self-serve applications.",products:["Hi-pH Presoak","Lo-pH Presoak","Impact Detergent","Acid Alternative Presoak"]},
-    {name:"Ceramic Protectants",tag:"Premium",desc:"The full Ceramic Infused Layering line. Quartz fills small surface imperfections over repeated passes for a deep mirror finish. Defender locks in true hydrophobic clear coat protection with UV blockers. Ceramic Shine and the GO graphene oxide additive layer in for the shiniest, driest car in the lane.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss (IBA)","Extreme Gloss Lava Polish"]},
-    {name:"Foam & Conditioning",tag:"The Big Show",desc:"High-foaming shampoos and tri-color conditioners that deliver the visual impact customers expect. Deep cleaning, quick rinsing, pH-neutralizing formulas. Ceramic-infused options available across the line.",products:["Wicked Wash Triple Foam","Ceramic Foaming Shampoo","Conditioning Shampoo"]},
-    {name:"Drying & Finish",tag:"The Finish",desc:"Ram Dry drying agent with ceramic properties aids rapid water removal without streaking. Non-MSO formula. Every Blair application is designed with drying in mind.",products:["Ram Dry Drying Agent","Spot-Free Rinse","Rain Repellent"]},
-    {name:"Wheel, Tire & Specialty",tag:"Specialty",desc:"High-shine solvent-based nano-fortified tire dressing plus water-based options. Lo-pH wheel cleaners for brake dust and oxidation. Underbody rust inhibitor. Injection fragrances in 8+ scents.",products:["Tire Dressing","Wheel Brightener","Underbody Rust Inhibitor","Don't Bug Me Remover","Injection Fragrances"]},
+    {name:"Presoaks",tag:"Cleaning",desc:"Hi and Lo pH formulations that pull road film, grease, bugs, and mineral deposits off the surface. Touchless, friction, or self-serve, dialed to your water.",products:["Hi-pH Presoak","Lo-pH Presoak","Impact Detergent","Acid Alternative Presoak"]},
+    {name:"Ceramic Protectants",tag:"Premium",desc:"The full Ceramic Infused Layering line. Quartz, Defender, Ceramic Shine, and the GO graphene oxide additive. Every pass adds another layer.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss (IBA)","Extreme Gloss Lava Polish"]},
+    {name:"Foam & Conditioning",tag:"The Big Show",desc:"High-foaming shampoos and tri-color conditioners that hit the visual the customer pays to see. Ceramic-infused options across the line.",products:["Wicked Wash Triple Foam","Ceramic Foaming Shampoo","Conditioning Shampoo"]},
+    {name:"Drying & Finish",tag:"The Finish",desc:"Ram Dry pulls water off without streaking. Non-MSO. Every Blair application is built with the dry in mind from the start.",products:["Ram Dry Drying Agent","Spot-Free Rinse","Rain Repellent"]},
+    {name:"Wheel, Tire & Specialty",tag:"Specialty",desc:"Nano-fortified tire dressing, Lo-pH wheel cleaners, underbody rust inhibitor, bug remover, and 8+ injection fragrances.",products:["Tire Dressing","Wheel Brightener","Underbody Rust Inhibitor","Don't Bug Me Remover","Injection Fragrances"]},
   ];
   const oasis=[
     {name:"Typhoon",tag:"High Volume",desc:"The fastest touchless automatic on the market. Up to 40 cars per hour with dual-bridge high-pressure turbo nozzles, intelligent vehicle scanning, and hydraulic gear drive.",products:["Dual-Step Presoak","Turbo Nozzles","XPert Monitoring","Buy-Up Technology","5-Year Warranty"]},
