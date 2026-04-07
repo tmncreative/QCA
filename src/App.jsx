@@ -33,6 +33,9 @@ body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
   .m-pad{padding-left:20px!important;padding-right:20px!important}
   .m-txt h1{font-size:36px!important}
   .m-txt h2{font-size:26px!important}
+  .spotlight-grid{grid-template-columns:1fr!important;gap:32px!important;padding:40px 24px!important}
+  .wax-strip{grid-template-columns:1fr!important;gap:24px!important;padding:44px 24px!important;text-align:left}
+  .wax-strip h2{white-space:normal!important}
 }
 @media(min-width:769px){.hide-d{display:none!important}}
 `;
@@ -224,6 +227,35 @@ function HomePage({setPage}){
         )}
       </div>
     </section>
+    <section style={{position:"relative",overflow:"hidden",background:`linear-gradient(135deg,${C.dark} 0%,${C.tealDeep} 100%)`}}>
+      <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:`linear-gradient(90deg,transparent,${C.green},transparent)`}}/>
+      <div style={{position:"absolute",top:-100,right:-100,width:340,height:340,borderRadius:"50%",background:`radial-gradient(circle,${C.green}10,transparent 65%)`,pointerEvents:"none"}}/>
+      <div className="m-pad wax-strip" style={{maxWidth:1200,margin:"0 auto",padding:"56px 32px",position:"relative",display:"grid",gridTemplateColumns:"auto 1fr auto",gap:40,alignItems:"center"}}>
+        <R>
+          <div>
+            <div style={{display:"inline-block",padding:"6px 14px",background:"rgba(0,212,85,.12)",border:"1px solid rgba(0,212,85,.3)",borderRadius:2,marginBottom:12}}>
+              <span style={{fontFamily:F.b,fontSize:10.5,fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",color:C.green}}>Wax Is Dead</span>
+            </div>
+            <h2 style={{fontFamily:F.h,fontSize:"clamp(26px,4vw,38px)",fontWeight:700,color:C.white,margin:0,lineHeight:1.1,letterSpacing:"-.01em",whiteSpace:"nowrap"}}>Ceramic Infused<br/><span style={{color:C.green,fontStyle:"italic"}}>Layering Technology</span></h2>
+          </div>
+        </R>
+        <R delay={1}>
+          <div style={{borderLeft:`2px solid ${C.green}`,paddingLeft:24}}>
+            <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.7,margin:0,maxWidth:520}}>Blair's proprietary ceramic coatings bond molecularly to the finish in seconds. Every pass adds another layer. Graphene Oxide additives create a Nanoscratch Resistant surface that produces the shiniest, driest, most protected cars in the industry.</p>
+            <div style={{display:"flex",gap:18,marginTop:18,flexWrap:"wrap"}}>
+              {["Ceramic Shine","Quartz","Defender","GO"].map((t,i)=>(
+                <div key={i} style={{fontFamily:F.b,fontSize:11,fontWeight:700,letterSpacing:".14em",textTransform:"uppercase",color:"rgba(255,255,255,.55)"}}>
+                  <span style={{color:C.green,marginRight:6}}>◆</span>{t}
+                </div>
+              ))}
+            </div>
+          </div>
+        </R>
+        <R delay={2}>
+          <button onClick={()=>setPage("Products")} style={{fontFamily:F.b,fontSize:13,fontWeight:600,padding:"14px 28px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`,whiteSpace:"nowrap"}}>See the Line</button>
+        </R>
+      </div>
+    </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"88px 32px"}}>
         <R><div style={{textAlign:"center",marginBottom:56}}><Lbl>Why QC Atlantic</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(26px,4vw,40px)",color:C.tealDeep,margin:0,fontWeight:700}}>Complete Control of Your Chemistry</h2></div></R>
@@ -296,12 +328,68 @@ function HomePage({setPage}){
   </div>);
 }
 
+function BlairSpotlight(){
+  const pillars=[
+    {tag:"Ceramic Shine",sub:"Complete Body Shine & Protectant"},
+    {tag:"Quartz",sub:"Complete Vehicle Protectant"},
+    {tag:"Defender",sub:"Clear Coat Protectant"},
+    {tag:"GO",sub:"Graphene Oxide Technology"},
+  ];
+  return(
+    <R>
+      <div style={{position:"relative",margin:"0 0 28px",borderRadius:6,overflow:"hidden",background:`linear-gradient(135deg,${C.dark} 0%,${C.tealDeep} 60%,${C.tealDark} 100%)`,border:`1px solid rgba(0,212,85,.12)`,boxShadow:"0 24px 60px rgba(9,30,39,.18)"}}>
+        <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.green},${C.teal},${C.green})`}}/>
+        <div style={{position:"absolute",top:-120,right:-120,width:380,height:380,borderRadius:"50%",background:`radial-gradient(circle,${C.green}10,transparent 65%)`,pointerEvents:"none"}}/>
+        <div style={{position:"absolute",bottom:-100,left:-100,width:300,height:300,borderRadius:"50%",background:`radial-gradient(circle,${C.teal}22,transparent 70%)`,pointerEvents:"none"}}/>
+        <div className="m-pad spotlight-grid" style={{position:"relative",padding:"56px 48px",display:"grid",gridTemplateColumns:"1.05fr .95fr",gap:48,alignItems:"center"}}>
+          <div>
+            <div style={{display:"inline-block",padding:"6px 14px",background:"rgba(0,212,85,.12)",border:"1px solid rgba(0,212,85,.3)",borderRadius:2,marginBottom:18}}>
+              <span style={{fontFamily:F.b,fontSize:10.5,fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",color:C.green}}>Wax Is Dead</span>
+            </div>
+            <h3 style={{fontFamily:F.h,fontSize:"clamp(28px,4vw,40px)",fontWeight:700,color:C.white,margin:"0 0 6px",lineHeight:1.1,letterSpacing:"-.01em"}}>Ceramic Infused<br/><span style={{color:C.green,fontStyle:"italic"}}>Layering Technology</span></h3>
+            <div style={{width:48,height:2,background:C.green,margin:"22px 0 22px"}}/>
+            <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:"0 0 16px"}}>Traditional waxes are lackluster compared to Blair's ceramic coatings. The proprietary formulation creates a molecular bond to the finish within seconds of application, and every pass adds another layer.</p>
+            <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:"0 0 24px"}}>The newest formulations include a custom Graphene Oxide additive that contributes to a stronger, more flexible coating. The result is a Nanoscratch Resistant surface that produces the shiniest, driest, and most protected cars in the industry.</p>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginTop:8}}>
+              {[
+                {n:"Deeper",l:"glossier finish, layer over layer"},
+                {n:"Drier",l:"hydrophobic in any weather"},
+                {n:"Tougher",l:"UV and environmental defense"},
+                {n:"Resistant",l:"nanoscratch surface protection"},
+              ].map((b,i)=>(
+                <div key={i} style={{borderLeft:`2px solid ${C.green}`,padding:"4px 0 4px 14px"}}>
+                  <div style={{fontFamily:F.h,fontSize:18,fontWeight:700,color:C.white,lineHeight:1}}>{b.n}</div>
+                  <div style={{fontFamily:F.b,fontSize:11.5,color:"rgba(255,255,255,.5)",marginTop:4,lineHeight:1.4}}>{b.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{position:"relative"}}>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+              {pillars.map((p,i)=>(
+                <div key={i} style={{position:"relative",padding:"24px 18px",background:"rgba(255,255,255,.04)",border:"1px solid rgba(0,212,85,.18)",borderRadius:4,backdropFilter:"blur(6px)",textAlign:"center",overflow:"hidden"}}>
+                  <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:`linear-gradient(90deg,transparent,${C.green},transparent)`}}/>
+                  <div style={{fontFamily:F.h,fontSize:20,fontWeight:700,color:C.white,letterSpacing:".02em",lineHeight:1.1,marginBottom:8}}>{p.tag}</div>
+                  <div style={{fontFamily:F.b,fontSize:10.5,color:"rgba(255,255,255,.55)",lineHeight:1.4,letterSpacing:".04em",textTransform:"uppercase",fontWeight:500}}>{p.sub}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop:18,padding:"14px 18px",background:"rgba(0,212,85,.06)",border:"1px solid rgba(0,212,85,.2)",borderRadius:3,textAlign:"center"}}>
+              <div style={{fontFamily:F.b,fontSize:11,fontWeight:600,letterSpacing:".18em",textTransform:"uppercase",color:C.green}}>Superior Shine <span style={{color:"rgba(255,255,255,.3)",margin:"0 8px"}}>•</span> Superior Protection</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </R>
+  );
+}
+
 function ProductsPage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),100)},[]);
   const blair=[
     {name:"Presoaks",tag:"Cleaning",desc:"Hi and Lo pH presoaks formulated with varying blends of acids and surfactants to penetrate and remove road film, oil, grease, bug residue, and mineral deposits. Available in HF, ABF, and acid-alternative formulations for touchless, friction, and self-serve applications.",products:["Hi-pH Presoak","Lo-pH Presoak","Impact Detergent","Acid Alternative Presoak"]},
-    {name:"Ceramic Protectants",tag:"Premium",desc:"Blair's exclusive ceramic-infused line uses silica layering technology that builds with each wash. Quartz fills small surface imperfections over repeated use, leaving a deep mirror finish. Defender provides true hydrophobic clear coat protection with UV blockers.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss (IBA)","Extreme Gloss Lava Polish"]},
+    {name:"Ceramic Protectants",tag:"Premium",desc:"The full Ceramic Infused Layering line. Quartz fills small surface imperfections over repeated passes for a deep mirror finish. Defender locks in true hydrophobic clear coat protection with UV blockers. Ceramic Shine and the GO graphene oxide additive layer in for the shiniest, driest car in the lane.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss (IBA)","Extreme Gloss Lava Polish"]},
     {name:"Foam & Conditioning",tag:"The Big Show",desc:"High-foaming shampoos and tri-color conditioners that deliver the visual impact customers expect. Deep cleaning, quick rinsing, pH-neutralizing formulas. Ceramic-infused options available across the line.",products:["Wicked Wash Triple Foam","Ceramic Foaming Shampoo","Conditioning Shampoo"]},
     {name:"Drying & Finish",tag:"The Finish",desc:"Ram Dry drying agent with ceramic properties aids rapid water removal without streaking. Non-MSO formula. Every Blair application is designed with drying in mind.",products:["Ram Dry Drying Agent","Spot-Free Rinse","Rain Repellent"]},
     {name:"Wheel, Tire & Specialty",tag:"Specialty",desc:"High-shine solvent-based nano-fortified tire dressing plus water-based options. Lo-pH wheel cleaners for brake dust and oxidation. Underbody rust inhibitor. Injection fragrances in 8+ scents.",products:["Tire Dressing","Wheel Brightener","Underbody Rust Inhibitor","Don't Bug Me Remover","Injection Fragrances"]},
@@ -323,7 +411,8 @@ function ProductsPage({setPage}){
     </section>
     <section style={{background:C.offWhite}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
-        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Blair Ceramics</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>30+ years of car wash chemistry innovation. Blair's exclusive ceramic-infused line uses silica layering technology that builds protection with every wash.</p></div></R>
+        <R><div style={{marginBottom:44}}><Lbl>Chemistry</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Blair Ceramics</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Formulated by full-time staff chemists. Blair's exclusive Ceramic Infused Layering Technology bonds to the finish in seconds, building shine and protection with every pass through the tunnel.</p></div></R>
+        <BlairSpotlight/>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
           <R delay={1}><div style={{position:"relative"}}><LogoCard src="/blair-logo.png" alt="Blair Ceramics" desc="Superior Shine. Superior Protection." alt2={false}/></div></R>
           {blair.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
