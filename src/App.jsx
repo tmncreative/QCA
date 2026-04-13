@@ -61,7 +61,7 @@ function Logo({size=48,dark=false}){
 function HeroBG(){
   return(<div style={{position:"absolute",inset:0,overflow:"hidden",pointerEvents:"none"}}>
     <video autoPlay muted loop playsInline poster="/poster.png" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-    <div style={{position:"absolute",inset:0,background:`linear-gradient(160deg,${C.dark}66 0%,${C.tealDeep}55 35%,${C.tealDark}44 70%,#0a3a4f33 100%)`}}/>
+    <div style={{position:"absolute",inset:0,background:`radial-gradient(ellipse at 30% 40%,${C.tealDark}99,${C.tealDeep}aa 50%,${C.dark}bb 100%)`}}/>
     <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent 5%,${C.green},transparent 95%)`}}/>
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:120,background:`linear-gradient(0deg,${C.offWhite},transparent)`}}/>
   </div>);
