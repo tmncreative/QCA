@@ -302,9 +302,7 @@ function HomePage({setPage}){
           </div>
         </R>
       </div>
-    </section>
-    <section style={{background:C.offWhite}}>
-      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"88px 32px"}}>
+      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"32px 32px 88px"}}>
         <R><div style={{textAlign:"center",marginBottom:56}}><Lbl>Why QC Atlantic</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(26px,4vw,40px)",color:C.tealDeep,margin:0,fontWeight:700}}>Complete Control of Your Chemistry</h2></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:24}}>
           {[{ico:"dial",title:"Customizable to Your Wash",desc:"Every car wash is different. We customize chemistry to your equipment, water quality, wash length, and dwell time. You get complete control over cleaning power, foam profile, and cost per car, all dialed independently."},{ico:"drop",title:"Cleaner. Drier. Shinier.",desc:"Every application we set up is designed with drying in mind. From dual pH presoaks that tackle both organic and inorganic soils to protectants that prep the surface for a spot-free finish, the whole system works together."},{ico:"shield",title:"Service Starts at the Sale",desc:"You deal with Winston directly. Not a call center, not a regional manager. When you have a problem at 6am on a Saturday, you get someone who has spent a decade solving those exact problems in backrooms across the country."}].map((c,i)=>
