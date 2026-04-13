@@ -420,17 +420,17 @@ function ProductsPage({setPage}){
   const[vis,setVis]=useState(false);
   useEffect(()=>{setTimeout(()=>setVis(true),100)},[]);
   const blair=[
-    {name:"Presoaks",tag:"Cleaning",desc:"Hi and Lo pH formulations that pull road film, grease, bugs, and mineral deposits off the surface. Touchless, friction, or self-serve, dialed to your water.",products:["Hi-pH Presoak","Lo-pH Presoak","Impact Detergent","Acid Alternative Presoak"]},
-    {name:"Ceramic Protectants",tag:"Premium",desc:"The full Ceramic Infused Layering line. Quartz, Defender, Ceramic Shine, and the GO graphene oxide additive. Every pass adds another layer.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss (IBA)","Extreme Gloss Lava Polish"]},
-    {name:"Foam & Conditioning",tag:"The Big Show",desc:"High-foaming shampoos and tri-color conditioners that hit the visual the customer pays to see. Ceramic-infused options across the line.",products:["Wicked Wash Triple Foam","Ceramic Foaming Shampoo","Conditioning Shampoo"]},
-    {name:"Drying & Finish",tag:"The Finish",desc:"Ram Dry pulls water off without streaking. Non-MSO. Every Blair application is built with the dry in mind from the start.",products:["Ram Dry Drying Agent","Spot-Free Rinse","Rain Repellent"]},
+    {name:"Presoaks",tag:"Cleaning",desc:"Hi and Lo pH formulations that pull road film, grease, bugs, and mineral deposits off the surface. Touchless, friction, or self-serve, dialed to your water.",products:["Hi-pH Presoak","Lo-pH Presoak","Impact Detergent"]},
+    {name:"Ceramic Protectants",tag:"Premium",desc:"The full Ceramic Infused Layering line. Quartz, Defender, Ceramic Shine, and the GO graphene oxide additive. Every pass adds another layer.",products:["Quartz Full Body Protectant","Defender Clear Coat","Ceramic Shine","Ceramic Gloss"]},
+    {name:"Foam & Conditioning",tag:"The Big Show",desc:"High-foaming shampoos and tri-color conditioners that hit the visual the customer pays to see. Ceramic-infused options across the line.",products:["Ceramic Foaming Shampoo","Conditioning Shampoo"]},
+    {name:"Drying & Finish",tag:"The Finish",desc:"Ram Dry pulls water off without streaking. Non-MSO. Every Blair application is built with the dry in mind from the start.",products:["Ram Dry Drying Agent","Slick X"]},
     {name:"Wheel, Tire & Specialty",tag:"Specialty",desc:"Nano-fortified tire dressing, Lo-pH wheel cleaners, underbody rust inhibitor, bug remover, and 8+ injection fragrances.",products:["Tire Dressing","Wheel Brightener","Underbody Rust Inhibitor","Don't Bug Me Remover","Injection Fragrances"]},
   ];
   const oasis=[
-    {name:"Typhoon",tag:"High Volume",desc:"The fastest touchless automatic on the market. Up to 40 cars per hour with dual-bridge high-pressure turbo nozzles, intelligent vehicle scanning, and hydraulic gear drive.",products:["Dual-Step Presoak","Turbo Nozzles","XPert Monitoring","Buy-Up Technology","5-Year Warranty"]},
-    {name:"Eclipse",tag:"Unattended",desc:"Touchless automatic designed for 24/7 unattended operation. Wall-mounted frame and elevated carriage protect from strike damage. Open bay design. Eco-Wash package standard.",products:["Wall-Mounted Frame","Smart Dryer Integration","Eco-Wash Package","Remote Diagnostics","5-Year Warranty"]},
-    {name:"XP",tag:"Touchless",desc:"Single-bridge, two-arm touchless automatic. Reliable cleaning at a lower price point than the Typhoon. Same Oasis build quality and warranty.",products:["Single Bridge Design","Two-Arm System","Vehicle Scanning","XPert Monitoring","5-Year Warranty"]},
-    {name:"BayWash i5",tag:"Soft-Touch",desc:"Oasis took the Sonny's i5 platform and loaded it with upgrades. Top washes around 4:20 with ceramic. Multiple processes per pass. Best friction machine for in-bay automatic operators.",products:["Friction Wash System","Multi-Process Passes","Ceramic Compatible","Wheel Blasters","5-Year Warranty"]},
+    {name:"Typhoon",tag:"High Volume",desc:"The fastest touchless automatic on the market. Up to 40 cars per hour with dual-bridge high-pressure turbo nozzles, intelligent vehicle scanning, and hydraulic gear drive.",products:["Dual-Step Presoak","Turbo Nozzles","XPert Monitoring","Buy-Up Technology"]},
+    {name:"Eclipse",tag:"Unattended",desc:"Touchless automatic designed for 24/7 unattended operation. Wall-mounted frame and elevated carriage protect from strike damage. Open bay design. Eco-Wash package standard.",products:["Wall-Mounted Frame","Smart Dryer Integration","Eco-Wash Package","Remote Diagnostics"]},
+    {name:"XP",tag:"Touchless",desc:"Single-bridge, two-arm touchless automatic. Reliable cleaning at a lower price point than the Typhoon. Same Oasis build quality and warranty.",products:["Single Bridge Design","Two-Arm System","Vehicle Scanning","XPert Monitoring"]},
+    {name:"BayWash i5",tag:"Soft-Touch",desc:"Oasis took the Sonny's i5 platform and loaded it with upgrades. Top washes around 4:20 with ceramic. Multiple processes per pass. Best friction machine for in-bay automatic operators.",products:["Friction Wash System","Multi-Process Passes","Ceramic Compatible","Wheel Blasters"]},
     {name:"Self-Service & Drying",tag:"Support",desc:"JetStream self-service equipment. Adapt and GaleForce high-velocity drying systems that integrate with any Oasis automatic.",products:["JetStream Self-Service","Adapt Drying System","GaleForce Dryers"]},
   ];
   return(<div>
@@ -455,7 +455,7 @@ function ProductsPage({setPage}){
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
         <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Equipment</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Oasis Car Wash Systems</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Family-owned since 1964. From the Typhoon (fastest touchless on the market) to the BayWash i5, every unit comes with a 5-year warranty and XPert remote monitoring.</p></div></R>
         <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
-          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/oasis-logo.png" alt="Oasis Car Wash Systems" desc="Family-owned since 1964. 5-year warranty on every unit." alt2={true}/></div></R>
+          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/oasis-logo.png" alt="Oasis Car Wash Systems" desc="Family-owned since 1964." alt2={true}/></div></R>
           {oasis.map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={true}/></R>)}
         </div>
       </div>
