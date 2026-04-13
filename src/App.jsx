@@ -60,20 +60,10 @@ function Logo({size=48,dark=false}){
 
 function HeroBG(){
   return(<div style={{position:"absolute",inset:0,overflow:"hidden",pointerEvents:"none"}}>
-    <div style={{position:"absolute",inset:0,background:`radial-gradient(ellipse at 30% 40%,${C.tealDark},${C.tealDeep} 50%,${C.dark} 100%)`}}/>
-    <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:.03}} xmlns="http://www.w3.org/2000/svg">
-      <defs><pattern id="hx" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
-        <path d="M28 2L54 18V50L28 66 2 50V18Z" fill="none" stroke={C.green} strokeWidth=".5"/>
-        <path d="M28 68L54 84V116L28 132 2 116V84Z" fill="none" stroke={C.green} strokeWidth=".5"/>
-        <path d="M-28 34L-2 50V82L-28 98-54 82V50Z" fill="none" stroke={C.green} strokeWidth=".5"/>
-        <path d="M84 34L110 50V82L84 98 58 82V50Z" fill="none" stroke={C.green} strokeWidth=".5"/>
-      </pattern></defs><rect width="100%" height="100%" fill="url(#hx)"/>
-    </svg>
-    <div style={{position:"absolute",top:"20%",left:"-10%",width:"50vw",height:"50vw",borderRadius:"50%",background:`radial-gradient(circle,${C.green}06,transparent 70%)`}}/>
-    <div style={{position:"absolute",bottom:"-10%",right:"-15%",width:"60vw",height:"60vw",borderRadius:"50%",background:`radial-gradient(circle,${C.teal}06,transparent 60%)`}}/>
+    <video autoPlay muted loop playsInline poster="/poster.png" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}><source src="/hero-video.mp4" type="video/mp4"/></video>
+    <div style={{position:"absolute",inset:0,background:`linear-gradient(160deg,${C.dark}66 0%,${C.tealDeep}55 35%,${C.tealDark}44 70%,#0a3a4f33 100%)`}}/>
     <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent 5%,${C.green},transparent 95%)`}}/>
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:120,background:`linear-gradient(0deg,${C.offWhite},transparent)`}}/>
-    <img src="/logo-w.png" alt="" style={{position:"absolute",left:"50%",top:"5%",transform:"translateX(-50%)",width:"clamp(500px,90vw,1200px)",height:"auto",opacity:.04,pointerEvents:"none",userSelect:"none"}}/>
   </div>);
 }
 
