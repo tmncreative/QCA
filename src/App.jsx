@@ -291,7 +291,7 @@ function HomePage({setPage}){
                 </div>
                 <h3 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,color:C.white,margin:"0 0 6px",lineHeight:1.1}}>Nobody Else Produces<br/><span style={{color:C.green,fontStyle:"italic"}}>A Reflection This Clear</span></h3>
                 <div style={{width:48,height:2,background:C.green,margin:"22px 0 22px"}}/>
-                <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:0}}>Real ceramic material plus graphene oxide. Every pass through the tunnel layers more shine onto the finish. The customer sees the difference the second they pull off the conveyor.</p>
+                <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:0}}>Real ceramic material plus graphene oxide. Every pass adds another layer of shine, hydrophobia, and protection from the debris that causes micro-scratches. The customer sees the difference the second they pull off the lot.</p>
               </div>
             </div>
           </div>
