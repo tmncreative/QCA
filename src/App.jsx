@@ -283,20 +283,15 @@ function HomePage({setPage}){
             <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.green},${C.teal},${C.green})`}}/>
             <div className="m-pad m-stack" style={{position:"relative",padding:"56px 48px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:48,alignItems:"center"}}>
               <div style={{borderRadius:6,overflow:"hidden",boxShadow:"0 16px 48px rgba(0,0,0,.3)"}}>
-                <video autoPlay muted loop playsInline poster="/video/wax-is-dead-poster.jpg" preload="metadata" style={{width:"100%",height:"auto",display:"block"}}><source src="/video/wax-is-dead.mp4" type="video/mp4"/></video>
+                <video autoPlay muted loop playsInline poster="/video/ceramic-reflection-poster.jpg" preload="metadata" style={{width:"100%",height:"auto",display:"block"}}><source src="/video/ceramic-reflection.mp4" type="video/mp4"/></video>
               </div>
               <div>
                 <div style={{display:"inline-block",padding:"6px 14px",background:"rgba(0,212,85,.12)",border:"1px solid rgba(0,212,85,.3)",borderRadius:2,marginBottom:18}}>
-                  <span style={{fontFamily:F.b,fontSize:10.5,fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",color:C.green}}>The Difference</span>
+                  <span style={{fontFamily:F.b,fontSize:10.5,fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",color:C.green}}>Mirror Finish</span>
                 </div>
-                <h3 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,color:C.white,margin:"0 0 6px",lineHeight:1.1}}>Real Ceramic Material <span style={{color:C.green}}>+</span><br/><span style={{color:C.green,fontStyle:"italic"}}>Graphene Oxide</span></h3>
+                <h3 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,color:C.white,margin:"0 0 6px",lineHeight:1.1}}>Nobody Else Produces<br/><span style={{color:C.green,fontStyle:"italic"}}>A Reflection This Clear</span></h3>
                 <div style={{width:48,height:2,background:C.green,margin:"22px 0 22px"}}/>
-                <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:"0 0 24px"}}>Creates an extreme level of hydrophobia and shields paint from rocks, dust, and the debris that cause micro-scratches.</p>
-                <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-                  {["Extreme Hydrophobia","Nanoscratch Resistant","Graphene Oxide"].map((t,i)=>(
-                    <span key={i} style={{fontFamily:F.b,fontSize:11,fontWeight:600,padding:"8px 16px",background:"rgba(27,110,138,.2)",border:`1px solid ${C.teal}`,borderRadius:20,color:"rgba(255,255,255,.75)",letterSpacing:".04em"}}>{t}</span>
-                  ))}
-                </div>
+                <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:0}}>Real ceramic material plus graphene oxide. Every pass through the tunnel layers more shine onto the finish. The customer sees the difference the second they pull off the conveyor.</p>
               </div>
             </div>
           </div>
