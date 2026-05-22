@@ -219,25 +219,25 @@ function HomePage({setPage}){
       <div style={{overflow:"hidden"}}>
         <div className="partner-track">
           {[
-            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
-            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
-            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
-            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
-            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
-            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
-            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
-            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
-            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
-            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
-            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
-            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
-            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics",h:36},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems",h:36},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems",h:36},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring",h:14},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics",h:36},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems",h:36},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems",h:36},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring",h:14},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics",h:36},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems",h:36},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems",h:36},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring",h:14},
+            {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics",h:36},
+            {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems",h:36},
+            {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems",h:36},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring",h:14},
           ].map((p,i)=>(
             <div key={i} style={{display:"flex",alignItems:"center",gap:16,padding:"0 52px",flexShrink:0,borderRight:`1px solid rgba(255,255,255,.06)`}}>
-              <img src={p.src} alt={p.alt} style={{height:36,width:"auto",opacity:.75,filter:"brightness(1.2)"}}/>
+              <img src={p.src} alt={p.alt} style={{height:p.h,width:"auto",opacity:.75,filter:"brightness(1.2)"}}/>
               <span style={{fontFamily:F.b,fontSize:11,fontWeight:600,letterSpacing:".14em",textTransform:"uppercase",color:"rgba(255,255,255,.3)",whiteSpace:"nowrap"}}>{p.label}</span>
             </div>
           ))}
@@ -519,8 +519,16 @@ function ProductsPage({setPage}){
           <div style={{position:"relative",margin:"0 0 28px",borderRadius:6,overflow:"hidden",background:`linear-gradient(135deg,${C.dark} 0%,${C.tealDeep} 60%,${C.tealDark} 100%)`,border:`1px solid rgba(0,212,85,.12)`,boxShadow:"0 24px 60px rgba(9,30,39,.18)"}}>
             <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.green},${C.teal},${C.green})`}}/>
             <div className="m-pad m-stack" style={{position:"relative",padding:"56px 48px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:48,alignItems:"center"}}>
-              <div style={{borderRadius:6,overflow:"hidden",boxShadow:"0 16px 48px rgba(0,0,0,.3)"}}>
-                <img src="/photos/anova-tanks-top.jpg" alt="Anova radar level sensors mounted on Blair Ceramics dispensing tanks" style={{width:"100%",height:"auto",display:"block"}}/>
+              <div style={{display:"grid",gap:8,gridTemplateColumns:"1fr 1fr"}}>
+                <div style={{gridColumn:"span 2",borderRadius:6,overflow:"hidden",boxShadow:"0 16px 48px rgba(0,0,0,.3)"}}>
+                  <img src="/photos/anova-tanks-top.jpg" alt="Anova radar level sensors mounted on Blair Ceramics dispensing tanks" style={{width:"100%",height:"auto",display:"block"}}/>
+                </div>
+                <div style={{borderRadius:6,overflow:"hidden",boxShadow:"0 12px 32px rgba(0,0,0,.25)",aspectRatio:"1/1"}}>
+                  <img src="/photos/anova-tanks.jpg" alt="Front view of Blair Ceramics dispensing tanks with Anova sensors" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+                </div>
+                <div style={{borderRadius:6,overflow:"hidden",boxShadow:"0 12px 32px rgba(0,0,0,.25)",aspectRatio:"1/1"}}>
+                  <img src="/photos/anova-sensor.jpg" alt="Close-up of an Anova radar level sensor" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+                </div>
               </div>
               <div>
                 <div style={{display:"inline-block",padding:"6px 14px",background:"rgba(0,212,85,.12)",border:"1px solid rgba(0,212,85,.3)",borderRadius:2,marginBottom:18}}>
