@@ -21,7 +21,7 @@ body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
 .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
 .card-hover{transition:transform .3s ease,box-shadow .3s ease}
 .card-hover:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(27,110,138,.1)}
-.partner-track{display:flex;align-items:center;gap:0;animation:ticker 18s linear infinite;width:max-content}
+.partner-track{display:flex;align-items:center;gap:0;animation:ticker 24s linear infinite;width:max-content}
 .partner-track:hover{animation-play-state:paused}
 .ba-slider{position:relative;overflow:hidden;border-radius:4px;cursor:ew-resize;user-select:none}
 .ba-handle{position:absolute;top:0;bottom:0;width:3px;background:#00D455;cursor:ew-resize;z-index:3;transform:translateX(-50%)}
@@ -222,15 +222,19 @@ function HomePage({setPage}){
             {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
             {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
             {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
             {src:"/blair-logo-white.png",alt:"Blair Ceramics",label:"Blair Ceramics"},
             {src:"/oasis-logo.png",alt:"Oasis Car Wash Systems",label:"Oasis Car Wash Systems"},
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems"},
+            {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring"},
           ].map((p,i)=>(
             <div key={i} style={{display:"flex",alignItems:"center",gap:16,padding:"0 52px",flexShrink:0,borderRight:`1px solid rgba(255,255,255,.06)`}}>
               <img src={p.src} alt={p.alt} style={{height:36,width:"auto",opacity:.75,filter:"brightness(1.2)"}}/>
@@ -448,7 +452,7 @@ function ProductsPage({setPage}){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>Product Lines</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Chemistry + Equipment</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. Tailored fit chemistry programs built around your car wash by QC Atlantic.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. POS by DRB. Tank monitoring by Anova. Tailored fit programs built around your car wash by QC Atlantic.</p>
       </div>
     </section>
     <section style={{background:C.offWhite}}>
@@ -505,6 +509,43 @@ function ProductsPage({setPage}){
             {name:"TunnelWatch",tag:"Tunnel Control",desc:"Real-time tunnel monitoring and control software. Tracks every vehicle through the tunnel, flags exceptions, and gives managers full visibility into throughput and uptime.",products:["Vehicle Tracking","Exception Alerts","Throughput Metrics","Camera Integration","Remote Access"]},
             {name:"Beacon",tag:"Marketing",desc:"DRB's customer engagement and marketing platform. Automated campaigns, win-back flows, and loyalty tools that keep members active and attract new customers.",products:["Automated Campaigns","Win-Back Flows","Loyalty Programs","Email & SMS","Performance Analytics"]},
           ].map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={false}/></R>)}
+        </div>
+      </div>
+    </section>
+    <section style={{background:C.white}}>
+      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"80px 32px"}}>
+        <R><div style={{marginBottom:44}}><div style={{fontFamily:F.b,fontSize:11.5,letterSpacing:".2em",textTransform:"uppercase",color:C.teal,marginBottom:14,fontWeight:600}}>Tank Monitoring</div><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,34px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>Anova</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,maxWidth:680,margin:0}}>Wireless radar level sensors that bolt to the top of your chemical tanks. Real-time levels, usage trends, and low-product alerts pushed straight to your phone. No more guesswork, no more dry pumps, no more emergency runs.</p></div></R>
+        <R>
+          <div style={{position:"relative",margin:"0 0 28px",borderRadius:6,overflow:"hidden",background:`linear-gradient(135deg,${C.dark} 0%,${C.tealDeep} 60%,${C.tealDark} 100%)`,border:`1px solid rgba(0,212,85,.12)`,boxShadow:"0 24px 60px rgba(9,30,39,.18)"}}>
+            <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.green},${C.teal},${C.green})`}}/>
+            <div className="m-pad m-stack" style={{position:"relative",padding:"56px 48px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:48,alignItems:"center"}}>
+              <div style={{borderRadius:6,overflow:"hidden",boxShadow:"0 16px 48px rgba(0,0,0,.3)"}}>
+                <img src="/photos/anova-tanks-top.jpg" alt="Anova radar level sensors mounted on Blair Ceramics dispensing tanks" style={{width:"100%",height:"auto",display:"block"}}/>
+              </div>
+              <div>
+                <div style={{display:"inline-block",padding:"6px 14px",background:"rgba(0,212,85,.12)",border:"1px solid rgba(0,212,85,.3)",borderRadius:2,marginBottom:18}}>
+                  <span style={{fontFamily:F.b,fontSize:10.5,fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",color:C.green}}>Know Your Levels</span>
+                </div>
+                <h3 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",fontWeight:700,color:C.white,margin:"0 0 6px",lineHeight:1.1}}>Radar Sensors <span style={{color:C.green}}>+</span><br/><span style={{color:C.green,fontStyle:"italic"}}>Cloud Dashboard</span></h3>
+                <div style={{width:48,height:2,background:C.green,margin:"22px 0 22px"}}/>
+                <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.78)",lineHeight:1.75,margin:"0 0 24px"}}>Non-contact radar reads chemical levels through the tank lid. Battery-powered, cellular-connected, no plumbing required. We see what you see, so reorders happen before you run out.</p>
+                <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+                  {["Wireless Radar","Battery Powered","Auto Reorder"].map((t,i)=>(
+                    <span key={i} style={{fontFamily:F.b,fontSize:11,fontWeight:600,padding:"8px 16px",background:"rgba(27,110,138,.2)",border:`1px solid ${C.teal}`,borderRadius:20,color:"rgba(255,255,255,.75)",letterSpacing:".04em"}}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </R>
+        <div className="m-stack" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:22}}>
+          <R delay={1}><div style={{position:"relative"}}><LogoCard src="/anova-logo.png" alt="Anova" desc="Smart tank monitoring for car wash chemistry." alt2={true}/></div></R>
+          {[
+            {name:"Radar Level Sensors",tag:"Hardware",desc:"Non-contact radar sensors that read chemical levels through the tank top. No floats, no probes touching product, no failures from chemical buildup. Battery-powered with multi-year life and cellular connectivity built in.",products:["Non-Contact Radar","Multi-Year Battery","Cellular Built In","No Plumbing","Chemical-Safe"]},
+            {name:"Live Dashboard",tag:"Software",desc:"Web and mobile dashboard that shows every tank at every site in real time. Usage trends, days-of-supply forecasts, and historical consumption pulled from the field 24/7.",products:["Real-Time Levels","Usage Trends","Days-of-Supply Forecast","Multi-Site View","Mobile App"]},
+            {name:"Low-Level Alerts",tag:"Notifications",desc:"Push notifications, SMS, or email the moment a tank crosses your custom threshold. No more dry pumps, no more emergency calls at midnight, no more downtime because no one noticed.",products:["Custom Thresholds","Push & SMS","Email Alerts","Team Routing","Snooze Controls"]},
+            {name:"Reorder Automation",tag:"Workflow",desc:"Anova lets us see the same data you see. When a tank trends toward empty, we schedule the next drop before you ask. The supply chain runs in the background and you stop tracking inventory by eyeball.",products:["Auto-Trigger Reorders","Shared Visibility","Delivery Scheduling","No Stockouts","Predictable Cost"]},
+          ].map((c,i)=><R key={i} delay={i<2?i+2:0}><PCard cat={c} alt={true}/></R>)}
         </div>
       </div>
     </section>
