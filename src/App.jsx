@@ -14,15 +14,22 @@ const GCSS = `
 *{margin:0;padding:0;box-sizing:border-box}
 body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
 ::selection{background:rgba(0,212,85,.2)}
+button{font:inherit}
+button:focus-visible,a:focus-visible{outline:2px solid ${C.green};outline-offset:3px}
+button:not(:disabled){transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+button:not(:disabled):hover{transform:translateY(-2px);filter:brightness(1.05)}
+button:not(:disabled):active{transform:translateY(0)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
-.card-hover{transition:transform .3s ease,box-shadow .3s ease}
+.card-hover{box-shadow:0 8px 26px rgba(12,47,61,.045);transition:transform .3s ease,box-shadow .3s ease}
 .card-hover:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(27,110,138,.1)}
-.partner-track{display:flex;align-items:center;gap:0;animation:ticker 24s linear infinite;width:max-content}
+.partner-track{display:flex;align-items:center;gap:0;animation:ticker 30s linear infinite;width:max-content}
 .partner-track:hover{animation-play-state:paused}
+.stats-grid>.stat-item{position:relative}
+.stats-grid>.stat-item:not(:last-child)::after{content:'';position:absolute;top:4px;right:-12px;width:1px;height:calc(100% - 8px);background:linear-gradient(180deg,transparent,rgba(27,110,138,.16),transparent)}
 .ba-slider{position:relative;overflow:hidden;border-radius:4px;cursor:ew-resize;user-select:none}
 .ba-handle{position:absolute;top:0;bottom:0;width:3px;background:#00D455;cursor:ew-resize;z-index:3;transform:translateX(-50%)}
 .ba-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#00D455;border:3px solid #fff;box-shadow:0 2px 12px rgba(0,0,0,.3)}
@@ -36,8 +43,25 @@ body{overflow-x:hidden;font-family:${F.b};background:${C.offWhite}}
   .spotlight-grid{grid-template-columns:1fr!important;gap:32px!important;padding:40px 24px!important}
   .wax-strip{grid-template-columns:1fr!important;gap:24px!important;padding:44px 24px!important;text-align:left}
   .wax-strip h2{white-space:normal!important}
+  .partner-item{padding-left:34px!important;padding-right:34px!important;gap:12px!important}
+  .stats-grid{gap:0!important;padding:38px 10px!important}
+  .stats-grid>.stat-item{padding:0 10px}
+  .stats-grid>.stat-item:not(:last-child)::after{right:0}
+  .stat-value{font-size:32px!important}
+  .stat-label{font-size:11px!important;line-height:1.35!important}
+  .family-grid{gap:36px!important;padding-top:64px!important;padding-bottom:64px!important}
+  .gallery-section,.before-after-section,.home-cta{padding-top:64px!important;padding-bottom:64px!important}
+  .gallery-section>.m-pad,.before-after-section>.m-pad{padding-left:0!important;padding-right:0!important}
+  .gallery-grid{grid-template-columns:1fr!important;gap:16px!important}
+  .gallery-card img{height:220px!important}
+  .footer-inner{flex-direction:column;align-items:flex-start!important;gap:16px!important}
 }
 @media(min-width:769px){.hide-d{display:none!important}}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .partner-track{animation:none}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 `;
 
 function useReveal(){
@@ -90,14 +114,14 @@ function Nav({currentPage,setPage}){
   return(<>
     <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:1000,padding:scrolled?"10px 0":"16px 0",background:scrolled?"rgba(12,47,61,.97)":"transparent",backdropFilter:scrolled?"blur(16px)":"none",transition:"all .35s",borderBottom:scrolled?`1px solid rgba(0,212,85,.1)`:"none"}}>
       <div style={{maxWidth:1200,margin:"0 auto",padding:"0 24px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-        <div onClick={()=>go("Home")} style={{cursor:"pointer",display:"flex",alignItems:"center",gap:10}}>
+        <button type="button" aria-label="Go to home" onClick={()=>go("Home")} style={{cursor:"pointer",display:"flex",alignItems:"center",gap:10,background:"none",border:"none",padding:0}}>
           <Logo size={30} dark/><span style={{fontFamily:F.h,fontSize:19,fontWeight:700,color:C.white}}>QC Atlantic</span>
-        </div>
+        </button>
         <div className="hide-m" style={{display:"flex",alignItems:"center",gap:28}}>
           {pages.map(p=><button key={p} onClick={()=>go(p)} style={{background:"none",border:"none",fontFamily:F.b,fontSize:12.5,fontWeight:currentPage===p?600:400,color:currentPage===p?C.green:"rgba(255,255,255,.65)",cursor:"pointer",letterSpacing:".08em",textTransform:"uppercase",padding:"4px 0",borderBottom:currentPage===p?`2px solid ${C.green}`:"2px solid transparent",transition:"all .2s"}}>{p}</button>)}
           <button onClick={()=>go("Contact")} style={{fontFamily:F.b,fontSize:12,fontWeight:600,padding:"9px 22px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2}}>Get Started</button>
         </div>
-        <button className="hide-d" onClick={()=>setMob(!mob)} style={{background:"none",border:"none",cursor:"pointer",padding:8,display:"flex",flexDirection:"column",gap:5}}>
+        <button type="button" className="hide-d" aria-label={mob?"Close menu":"Open menu"} aria-expanded={mob} onClick={()=>setMob(!mob)} style={{background:"none",border:"none",cursor:"pointer",padding:8,display:"flex",flexDirection:"column",gap:5}}>
           <span style={{display:"block",width:24,height:2,background:C.white,transition:"all .3s",transform:mob?"rotate(45deg) translateY(7px)":"none"}}/>
           <span style={{display:"block",width:24,height:2,background:C.white,transition:"all .3s",opacity:mob?0:1}}/>
           <span style={{display:"block",width:24,height:2,background:C.white,transition:"all .3s",transform:mob?"rotate(-45deg) translateY(-7px)":"none"}}/>
@@ -206,10 +230,10 @@ function HomePage({setPage}){
       <div className="m-pad m-txt" style={{maxWidth:860,margin:"0 auto",padding:"150px 32px 100px",textAlign:"center",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(30px)",transition:"all .9s cubic-bezier(.23,1,.32,1)"}}>
         <Lbl>Tailor Fit Car Wash Chemistry</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(40px,7vw,78px)",fontWeight:700,color:C.white,lineHeight:1.05,margin:"0 0 24px",letterSpacing:"-.03em"}}>Chemistry.<br/><span style={{color:C.green,fontStyle:"italic"}}>Not Soap.</span></h1>
-        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.5)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash chemistry tailored fit to your car wash, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
+        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.68)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash chemistry tailored fit to your car wash, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
         <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
           <button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:14,fontWeight:600,padding:"15px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`}}>Schedule a Trial</button>
-          <button onClick={()=>setPage("Products")} style={{fontFamily:F.b,fontSize:14,fontWeight:500,padding:"15px 36px",background:"rgba(255,255,255,.06)",color:C.white,border:"1px solid rgba(255,255,255,.15)",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,backdropFilter:"blur(4px)"}}>See Our Chemistry</button>
+          <button onClick={()=>setPage("Products")} style={{fontFamily:F.b,fontSize:14,fontWeight:500,padding:"15px 36px",background:"rgba(255,255,255,.1)",color:C.white,border:"1px solid rgba(255,255,255,.28)",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,backdropFilter:"blur(4px)"}}>See Our Chemistry</button>
         </div>
       </div>
     </section>
@@ -236,18 +260,18 @@ function HomePage({setPage}){
             {src:"/drb-logo.png",alt:"DRB Systems",label:"DRB Systems",h:36},
             {src:"/anova-logo-white.png",alt:"Anova",label:"Anova Tank Monitoring",h:14},
           ].map((p,i)=>(
-            <div key={i} style={{display:"flex",alignItems:"center",gap:16,padding:"0 52px",flexShrink:0,borderRight:`1px solid rgba(255,255,255,.06)`}}>
-              <img src={p.src} alt={p.alt} style={{height:p.h,width:"auto",opacity:.75,filter:"brightness(1.2)"}}/>
-              <span style={{fontFamily:F.b,fontSize:11,fontWeight:600,letterSpacing:".14em",textTransform:"uppercase",color:"rgba(255,255,255,.3)",whiteSpace:"nowrap"}}>{p.label}</span>
+            <div key={i} className="partner-item" style={{display:"flex",alignItems:"center",gap:16,padding:"0 52px",flexShrink:0,borderRight:`1px solid rgba(255,255,255,.06)`}}>
+              <img src={p.src} alt={p.alt} style={{height:p.h,width:"auto",opacity:.84,filter:"brightness(1.2)"}}/>
+              <span style={{fontFamily:F.b,fontSize:11,fontWeight:600,letterSpacing:".14em",textTransform:"uppercase",color:"rgba(255,255,255,.42)",whiteSpace:"nowrap"}}>{p.label}</span>
             </div>
           ))}
         </div>
       </div>
     </div>
     <section style={{background:C.white,borderBottom:`1px solid ${C.lightTeal}`}}>
-      <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",padding:"48px 32px",display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:24,textAlign:"center"}}>
+      <div className="m-pad stats-grid" style={{maxWidth:1200,margin:"0 auto",padding:"48px 32px",display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:24,textAlign:"center"}}>
         {[{n:"10+",l:"Years of Tailored Fit Chemistry"},{n:"1",l:"Point of Contact. Always."},{n:"100%",l:"Operator-Minded"}].map((s,i)=>
-          <R key={i} delay={i+1}><div style={{fontFamily:F.h,fontSize:"clamp(32px,5vw,42px)",fontWeight:700,color:C.teal,lineHeight:1}}>{s.n}</div><div style={{fontFamily:F.b,fontSize:12.5,color:C.grayLight,marginTop:8}}>{s.l}</div></R>
+          <R key={i} delay={i+1} className="stat-item"><div className="stat-value" style={{fontFamily:F.h,fontSize:"clamp(32px,5vw,42px)",fontWeight:700,color:C.teal,lineHeight:1}}>{s.n}</div><div className="stat-label" style={{fontFamily:F.b,fontSize:12.5,color:C.grayLight,marginTop:8}}>{s.l}</div></R>
         )}
       </div>
     </section>
@@ -311,12 +335,12 @@ function HomePage({setPage}){
       </div>
     </section>
     <section style={{background:C.white}}>
-      <div className="m-pad m-stack" style={{maxWidth:1100,margin:"0 auto",padding:"80px 32px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"center"}}>
+      <div className="m-pad m-stack family-grid" style={{maxWidth:1100,margin:"0 auto",padding:"80px 32px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"center"}}>
         <R><div>
           <Lbl>Who We Are</Lbl>
           <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 20px",fontWeight:700}}>Family-Owned. Operator-Minded.</h2>
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because operators kept getting chemistry that was close enough, not dialed in.</p>
-          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business in every sense. Winston built it from scratch, and the people closest to him have been part of it from day one.</p>
+          <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:0}}>This is a family business in every sense. Winston built it from scratch, and the people closest to him have been part of it from day one.</p>
         </div></R>
         <R delay={1}><div style={{position:"relative"}}>
           <div style={{position:"absolute",top:-12,left:-12,right:12,bottom:12,background:C.offWhite,borderRadius:6,border:`1px solid rgba(27,110,138,.08)`,zIndex:0}}/>
@@ -328,10 +352,10 @@ function HomePage({setPage}){
         </div></R>
       </div>
     </section>
-    <section style={{background:C.offWhite,padding:"80px 32px"}}>
+    <section className="gallery-section" style={{background:C.offWhite,padding:"80px 32px"}}>
       <div className="m-pad" style={{maxWidth:1200,margin:"0 auto"}}>
         <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>In the Field</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:0,fontWeight:700}}>Results You Can See</h2></div></R>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:14}}>
+        <div className="gallery-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:14}}>
           {[
             {src:"/photos/gallery-4.jpg",label:"Tesla Model Y, spot-free finish"},
             {src:"/photos/gallery-5.jpg",label:"Tundra, ceramic gloss after wash"},
@@ -339,7 +363,7 @@ function HomePage({setPage}){
             {src:"/photos/gallery-2.jpg",label:"You won't find a shinier car"},
           ].map((g,i)=>(
             <R key={i} delay={i<3?i+1:0}>
-              <div className="card-hover" style={{borderRadius:4,overflow:"hidden",position:"relative",background:C.dark}}>
+              <div className="card-hover gallery-card" style={{borderRadius:6,overflow:"hidden",position:"relative",background:C.dark}}>
                 <img src={g.src} alt={g.label} style={{width:"100%",height:240,objectFit:"cover",display:"block",opacity:.92}}/>
                 <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"28px 16px 14px",background:"linear-gradient(0deg,rgba(9,30,39,.85),transparent)"}}>
                   <span style={{fontFamily:F.b,fontSize:12,color:"rgba(255,255,255,.8)",fontWeight:500}}>{g.label}</span>
@@ -350,18 +374,18 @@ function HomePage({setPage}){
         </div>
       </div>
     </section>
-    <section style={{background:C.white,padding:"80px 32px"}}>
+    <section className="before-after-section" style={{background:C.white,padding:"80px 32px"}}>
       <div className="m-pad" style={{maxWidth:900,margin:"0 auto"}}>
         <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>Before & After</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>The Difference Chemistry Makes</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,margin:0}}>Drag the slider to compare. Same car, same wash. Before and after a dialed-in chemistry program.</p></div></R>
         <R delay={1}><BeforeAfter/></R>
       </div>
     </section>
-    <section style={{position:"relative",overflow:"hidden",padding:"80px 32px",textAlign:"center"}}>
+    <section className="home-cta" style={{position:"relative",overflow:"hidden",padding:"80px 32px",textAlign:"center"}}>
       <div style={{position:"absolute",inset:0,background:`linear-gradient(135deg,${C.tealDeep},${C.tealDark})`}}/>
       <div style={{position:"absolute",left:"50%",top:"50%",width:500,height:500,borderRadius:"50%",background:`radial-gradient(circle,${C.green}06,transparent 70%)`,transform:"translate(-50%,-50%)"}}/>
       <R><div style={{position:"relative",zIndex:1}}>
         <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.white,margin:"0 0 12px",fontWeight:700}}>Ready to own the car?</h2>
-        <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.45)",margin:"0 0 32px"}}>Schedule a trial and we'll build a tailored fit chemistry program for your car wash. No contracts, no pressure. Just results.</p>
+        <p style={{fontFamily:F.b,fontSize:15,color:"rgba(255,255,255,.68)",margin:"0 0 32px"}}>Schedule a trial and we'll build a tailored fit chemistry program for your car wash. No contracts, no pressure. Just results.</p>
         <button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:14,fontWeight:600,padding:"15px 44px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`}}>Get in Touch</button>
       </div></R>
     </section>
@@ -446,7 +470,7 @@ function ProductsPage({setPage}){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>Product Lines</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Chemistry + Equipment</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. POS by DRB. Tank monitoring by Anova. Tailored fit programs built around your car wash by QC Atlantic.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.68)",margin:0,lineHeight:1.6}}>Chemistry by Blair Ceramics. Equipment by Oasis Car Wash Systems. POS by DRB. Tank monitoring by Anova. Tailored fit programs built around your car wash by QC Atlantic.</p>
       </div>
     </section>
     <section style={{background:C.offWhite}}>
@@ -551,7 +575,7 @@ function ProductsPage({setPage}){
         </div>
       </div>
     </section>
-    <section style={{position:"relative",padding:"72px 32px",textAlign:"center",overflow:"hidden"}}><div style={{position:"absolute",inset:0,background:C.tealDeep}}/><R><div style={{position:"relative",zIndex:1}}><h2 style={{fontFamily:F.h,fontSize:"clamp(22px,3.5vw,32px)",color:C.white,margin:"0 0 10px",fontWeight:700}}>Need chemistry, equipment, or both?</h2><p style={{fontFamily:F.b,fontSize:14.5,color:"rgba(255,255,255,.45)",margin:"0 0 28px"}}>We'll visit your site, evaluate your setup, and build a program that covers everything from presoak to drying system.</p><button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:13,fontWeight:600,padding:"13px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2}}>Request a Consultation</button></div></R></section>
+    <section style={{position:"relative",padding:"72px 32px",textAlign:"center",overflow:"hidden"}}><div style={{position:"absolute",inset:0,background:C.tealDeep}}/><R><div style={{position:"relative",zIndex:1}}><h2 style={{fontFamily:F.h,fontSize:"clamp(22px,3.5vw,32px)",color:C.white,margin:"0 0 10px",fontWeight:700}}>Need chemistry, equipment, or both?</h2><p style={{fontFamily:F.b,fontSize:14.5,color:"rgba(255,255,255,.68)",margin:"0 0 28px"}}>We'll visit your site, evaluate your setup, and build a program that covers everything from presoak to drying system.</p><button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:13,fontWeight:600,padding:"13px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2}}>Request a Consultation</button></div></R></section>
   </div>);
 }
 
@@ -569,7 +593,7 @@ function AboutPage({setPage}){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>About QC Atlantic</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Operator-Minded from Day One</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Winston Matney has spent his career inside car wash backrooms, diagnosing chemistry problems and helping operators produce the cleanest, driest, shiniest cars in their markets.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.68)",margin:0,lineHeight:1.6}}>Winston Matney has spent his career inside car wash backrooms, diagnosing chemistry problems and helping operators produce the cleanest, driest, shiniest cars in their markets.</p>
       </div>
     </section>
     <section style={{background:C.white}}>
@@ -617,7 +641,7 @@ function ContactPage(){
       <div className="m-pad m-txt" style={{maxWidth:700,margin:"0 auto",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(20px)",transition:"all .6s"}}>
         <Lbl>Get Started</Lbl>
         <h1 style={{fontFamily:F.h,fontSize:"clamp(30px,5vw,50px)",color:C.white,margin:"0 0 14px",fontWeight:700}}>Let's Talk Chemistry</h1>
-        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.5)",margin:0,lineHeight:1.6}}>Whether you run 1 car wash or 20 locations, we'll build a chemical program around your operation.</p>
+        <p style={{fontFamily:F.b,fontSize:16,color:"rgba(255,255,255,.68)",margin:0,lineHeight:1.6}}>Whether you run 1 car wash or 20 locations, we'll build a chemical program around your operation.</p>
       </div>
     </section>
     <section style={{background:C.offWhite}}>
@@ -631,7 +655,7 @@ function ContactPage(){
             <div><label style={lbl}>I am a...</label><select style={{...inp,cursor:"pointer"}} value={form.type} onChange={e=>setForm({...form,type:e.target.value})}><option value="">Select one</option><option value="operator">Car Wash Operator</option><option value="distributor">Distributor</option><option value="investor">Investor / Multi-Site Owner</option><option value="other">Other</option></select></div>
             <div><label style={lbl}>Wash Locations</label><input style={inp} value={form.washes} onChange={e=>setForm({...form,washes:e.target.value})} placeholder="e.g. 3" onFocus={e=>e.target.style.borderColor=C.teal} onBlur={e=>e.target.style.borderColor="rgba(27,110,138,.12)"}/></div>
             <div><label style={lbl}>Message</label><textarea style={{...inp,minHeight:90,resize:"vertical"}} value={form.message} onChange={e=>setForm({...form,message:e.target.value})} placeholder="Tell us about your wash." onFocus={e=>e.target.style.borderColor=C.teal} onBlur={e=>e.target.style.borderColor="rgba(27,110,138,.12)"}/></div>
-            <button onClick={go} style={{fontFamily:F.b,fontSize:14.5,fontWeight:600,padding:"15px 0",background:form.name&&form.email?C.green:C.grayLight,color:C.dark,border:"none",borderRadius:2,cursor:form.name&&form.email?"pointer":"not-allowed",letterSpacing:".04em",textTransform:"uppercase",width:"100%",transition:"all .2s"}}>Send Message</button>
+            <button type="button" disabled={!form.name||!form.email} onClick={go} style={{fontFamily:F.b,fontSize:14.5,fontWeight:600,padding:"15px 0",background:form.name&&form.email?C.green:C.grayLight,color:C.dark,border:"none",borderRadius:2,cursor:form.name&&form.email?"pointer":"not-allowed",letterSpacing:".04em",textTransform:"uppercase",width:"100%",transition:"all .2s"}}>Send Message</button>
           </div>
         }</div></R>
         <R delay={1}><div>
@@ -656,9 +680,9 @@ function ContactPage(){
 
 function Footer(){
   return(<footer style={{background:C.dark,padding:"44px 24px 28px",borderTop:`1px solid rgba(0,212,85,.06)`}}>
-    <div className="m-pad" style={{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
+    <div className="m-pad footer-inner" style={{maxWidth:1200,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
       <div style={{display:"flex",alignItems:"center",gap:10}}><Logo size={26} dark/><span style={{fontFamily:F.h,fontSize:15,fontWeight:700,color:C.white}}>QC Atlantic</span></div>
-      <div style={{fontFamily:F.b,fontSize:12.5,color:"rgba(255,255,255,.25)"}}>© 2026 Quality Car Atlantic. Clemmons, NC. · <a href="https://tmncreative.com" target="_blank" rel="noopener" style={{color:"rgba(255,255,255,.18)",textDecoration:"none",fontSize:11}}>Site by TMN Creative</a></div>
+      <div style={{fontFamily:F.b,fontSize:12.5,color:"rgba(255,255,255,.5)"}}>© 2026 Quality Car Atlantic. Clemmons, NC. · <a href="https://tmncreative.com" target="_blank" rel="noopener" style={{color:"rgba(255,255,255,.42)",textDecoration:"none",fontSize:11}}>Site by TMN Creative</a></div>
       <div style={{fontFamily:F.h,fontSize:14,fontWeight:700,color:C.green,fontStyle:"italic"}}>Chemistry. Not Soap.</div>
     </div>
   </footer>);
@@ -666,7 +690,7 @@ function Footer(){
 
 export default function App(){
   const[currentPage,setCurrentPage]=useState("Home");
-  const setPage=p=>{setCurrentPage(p);window.scrollTo({top:0,behavior:"smooth"})};
+  const setPage=p=>{document.documentElement.scrollTop=0;document.body.scrollTop=0;setCurrentPage(p)};
   const pg=()=>{switch(currentPage){
     case"Home":return<HomePage setPage={setPage}/>;
     case"Products":return<ProductsPage setPage={setPage}/>;
