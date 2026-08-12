@@ -317,12 +317,6 @@ function HomePage({setPage}){
           <h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 20px",fontWeight:700}}>Family-Owned. Operator-Minded.</h2>
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 16px"}}>QC Atlantic was built by someone who spent a decade in car wash backrooms before ever sending an invoice. Winston started this business because operators kept getting chemistry that was close enough, not dialed in.</p>
           <p style={{fontFamily:F.b,fontSize:15.5,color:C.gray,lineHeight:1.8,margin:"0 0 24px"}}>This is a family business in every sense. Winston built it from scratch, and the people closest to him have been part of it from day one.</p>
-          <div style={{display:"inline-flex",alignItems:"center",gap:10,padding:"12px 20px",background:C.offWhite,borderRadius:4,border:`1px solid rgba(27,110,138,.08)`}}>
-            <svg width="16" height="16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{flexShrink:0}}>
-              <path d="M32 8 C32 8 16 26 16 38 C16 47 23 54 32 54 C41 54 48 47 48 38 C48 26 32 8 32 8 Z" stroke={C.green} strokeWidth="3" strokeLinejoin="round"/>
-            </svg>
-            <span style={{fontFamily:F.b,fontSize:13,color:C.gray,fontStyle:"italic"}}>"She's already got better dilution ratios than most reps I've trained."</span>
-          </div>
         </div></R>
         <R delay={1}><div style={{position:"relative"}}>
           <div style={{position:"absolute",top:-12,left:-12,right:12,bottom:12,background:C.offWhite,borderRadius:6,border:`1px solid rgba(27,110,138,.08)`,zIndex:0}}/>
