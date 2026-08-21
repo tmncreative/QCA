@@ -229,8 +229,8 @@ function HomePage({setPage}){
       <HeroBG/>
       <div className="m-pad m-txt" style={{maxWidth:860,margin:"0 auto",padding:"150px 32px 100px",textAlign:"center",position:"relative",zIndex:1,opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(30px)",transition:"all .9s cubic-bezier(.23,1,.32,1)"}}>
         <Lbl>Tailor Fit Car Wash Chemistry</Lbl>
-        <h1 style={{fontFamily:F.h,fontSize:"clamp(40px,7vw,78px)",fontWeight:700,color:C.white,lineHeight:1.05,margin:"0 0 24px",letterSpacing:"-.03em"}}>Chemistry.<br/><span style={{color:C.green,fontStyle:"italic"}}>Not Soap.</span></h1>
-        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.68)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash chemistry tailored fit to your car wash, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
+        <h1 style={{fontFamily:F.h,fontSize:"clamp(40px,7vw,78px)",fontWeight:700,color:C.white,lineHeight:1.05,margin:"0 0 24px",letterSpacing:"-.03em"}}>Chemistry.<br/><span style={{color:C.green,fontStyle:"italic"}}>Solutions.</span></h1>
+        <p style={{fontFamily:F.b,fontSize:"clamp(16px,2.2vw,18px)",color:"rgba(255,255,255,.68)",maxWidth:520,margin:"0 auto 44px",lineHeight:1.7}}>Car wash solutions tailored to your car wash, your water, and your market. Cleaner cars, drier cars, shinier cars, and a lower cost per car.</p>
         <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
           <button onClick={()=>setPage("Contact")} style={{fontFamily:F.b,fontSize:14,fontWeight:600,padding:"15px 36px",background:C.green,color:C.dark,border:"none",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,boxShadow:`0 4px 20px ${C.green}33`}}>Schedule a Trial</button>
           <button onClick={()=>setPage("Products")} style={{fontFamily:F.b,fontSize:14,fontWeight:500,padding:"15px 36px",background:"rgba(255,255,255,.1)",color:C.white,border:"1px solid rgba(255,255,255,.28)",cursor:"pointer",letterSpacing:".04em",textTransform:"uppercase",borderRadius:2,backdropFilter:"blur(4px)"}}>See Our Chemistry</button>
@@ -357,17 +357,14 @@ function HomePage({setPage}){
         <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>In the Field</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:0,fontWeight:700}}>Results You Can See</h2></div></R>
         <div className="gallery-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:14}}>
           {[
-            {src:"/photos/gallery-4.jpg",label:"Tesla Model Y, spot-free finish"},
-            {src:"/photos/gallery-5.jpg",label:"Tundra, ceramic gloss after wash"},
-            {src:"/photos/gallery-6.jpg",label:"Blair Ceramics precision dispensing system"},
-            {src:"/photos/gallery-2.jpg",label:"You won't find a shinier car"},
+            {src:"/photos/gallery-4.jpg",alt:"Tesla Model Y after a wash"},
+            {src:"/photos/gallery-5.jpg",alt:"Tundra after a wash"},
+            {src:"/photos/gallery-6.jpg",alt:"Blair Ceramics dispensing system"},
+            {src:"/photos/gallery-2.jpg",alt:"Freshly washed vehicle"},
           ].map((g,i)=>(
             <R key={i} delay={i<3?i+1:0}>
               <div className="card-hover gallery-card" style={{borderRadius:6,overflow:"hidden",position:"relative",background:C.dark}}>
-                <img src={g.src} alt={g.label} style={{width:"100%",height:240,objectFit:"cover",display:"block",opacity:.92}}/>
-                <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"28px 16px 14px",background:"linear-gradient(0deg,rgba(9,30,39,.85),transparent)"}}>
-                  <span style={{fontFamily:F.b,fontSize:12,color:"rgba(255,255,255,.8)",fontWeight:500}}>{g.label}</span>
-                </div>
+                <img src={g.src} alt={g.alt} style={{width:"100%",height:240,objectFit:"cover",display:"block",opacity:.92}}/>
               </div>
             </R>
           ))}
