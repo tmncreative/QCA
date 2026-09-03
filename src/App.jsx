@@ -375,6 +375,25 @@ function HomePage({setPage}){
       <div className="m-pad" style={{maxWidth:900,margin:"0 auto"}}>
         <R><div style={{textAlign:"center",marginBottom:44}}><Lbl>Before & After</Lbl><h2 style={{fontFamily:F.h,fontSize:"clamp(24px,3.5vw,36px)",color:C.tealDeep,margin:"0 0 10px",fontWeight:700}}>The Difference Chemistry Makes</h2><p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,margin:0}}>Drag the slider to compare. Same car, same wash. Before and after a dialed-in chemistry program.</p></div></R>
         <R delay={1}><BeforeAfter/></R>
+        <R delay={2}><div style={{marginTop:56}}>
+          <div style={{textAlign:"center",marginBottom:26}}>
+            <h3 style={{fontFamily:F.h,fontSize:"clamp(19px,2.4vw,24px)",color:C.tealDeep,margin:"0 0 8px",fontWeight:700}}>In the Chemical Room</h3>
+            <p style={{fontFamily:F.b,fontSize:14.5,color:C.gray,lineHeight:1.7,margin:0}}>Before: drums, hand-mixed dilutions, and tubing run wherever it fit. After: a Blair Ceramics precision dispensing system, labeled and lined up on one wall.</p>
+          </div>
+          <div className="ba-pair m-stack" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+            {[
+              {src:"/photos/backroom-before.jpg",label:"Before",alt:"Car wash chemical room before the install, with drums and jugs crowded together and dip tubes and hoses running across the floor"},
+              {src:"/photos/backroom-after.jpg",label:"After",alt:"Chemical room after the install, with Blair Ceramics precision dispensing tanks lined up along the wall and feed lines labeled"},
+            ].map((b,i)=>(
+              <div key={i} className="card-hover" style={{position:"relative",borderRadius:6,overflow:"hidden",background:C.dark}}>
+                <img src={b.src} alt={b.alt} loading="lazy" decoding="async" width="1600" height="1067" style={{width:"100%",height:"auto",aspectRatio:"3/2",objectFit:"cover",display:"block"}}/>
+                <div style={i===0
+                  ?{position:"absolute",top:12,left:12,background:"rgba(9,30,39,.75)",padding:"5px 12px",borderRadius:2,fontFamily:F.b,fontSize:11,fontWeight:700,color:C.white,letterSpacing:".08em",textTransform:"uppercase",backdropFilter:"blur(4px)"}
+                  :{position:"absolute",top:12,left:12,background:"rgba(0,212,85,.85)",padding:"5px 12px",borderRadius:2,fontFamily:F.b,fontSize:11,fontWeight:700,color:C.dark,letterSpacing:".08em",textTransform:"uppercase"}}>{b.label}</div>
+              </div>
+            ))}
+          </div>
+        </div></R>
       </div>
     </section>
     <section className="home-cta" style={{position:"relative",overflow:"hidden",padding:"80px 32px",textAlign:"center"}}>
